@@ -15,16 +15,22 @@ class Task {
         std::string taskText;
         int urgency;
         int dueDate;
-        std::vector<std::string> tags;
         bool completed;
 
     public:
+        // modification functions
         void editTaskText(std::string newTaskText);
         void editTaskUrgency(int newUrgency);
         void editTaskDueDate(int newDueDate);
-        void deleteTag(int tagIndex);
-        void addTag(std::string newTag);
         void editCompletion(bool completion);
+
+        // getter functions
+        std::string getTaskText();
+        int getUrgency();
+        int getDueDate();
+
+        // check if task is completed
+        bool isCompleted();   
 };
 
 #endif
