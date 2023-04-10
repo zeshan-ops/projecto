@@ -1,5 +1,12 @@
 #include "task.h"
 
+Task :: Task(std::string taskText, int urgency, int dueDate) {
+    taskText = taskText;
+    urgency = urgency;
+    dueDate = dueDate;
+    completed = false;
+}
+
 void Task :: editTaskText(std::string newTaskText) {
     taskText = newTaskText;
 }

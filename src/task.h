@@ -18,7 +18,10 @@ class Task {
         bool completed;
 
     public:
-        // modification functions
+        // constructor
+        Task(std::string taskText, int urgency, int dueDate);
+
+        // setter functions
         void editTaskText(std::string newTaskText);
         void editTaskUrgency(int newUrgency);
         void editTaskDueDate(int newDueDate);
