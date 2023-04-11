@@ -8,7 +8,6 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #define TASK_H
 
 #include <string>
-#include <vector>
 
 class Task {
     private:
