@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
-#include "../src/task.h"
+#include "../src/model/task.h"
 
 TEST_CASE("Task Object Correct Initilisation Check") {
     Task testTask("Test Task", 0, 0);
