@@ -32,7 +32,15 @@ class Task {
         int getDueDate();
 
         // check if task is completed
-        bool isCompleted();   
+        bool isCompleted();
+
+        // comparison check
+        bool operator==(const Task& a) const {
+            return a.taskText == taskText
+                && a.completed == completed
+                && a.dueDate == dueDate
+                && a.urgency == urgency;
+        }
 };
 
 #endif

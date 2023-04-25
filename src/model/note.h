@@ -17,6 +17,10 @@ class Note {
         Note(std::string initialNoteText);
         void editNoteText(std::string newNoteText);
         std::string getNoteNext();
+
+        bool operator==(const Note& a) const {
+            return a.noteText == noteText;
+        }
 };
 
 #endif
