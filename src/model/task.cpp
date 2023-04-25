@@ -1,9 +1,9 @@
 #include "task.h"
 
-Task :: Task(std::string taskText, int urgency, int dueDate) {
-    taskText = taskText;
-    urgency = urgency;
-    dueDate = dueDate;
+Task :: Task(std::string newTaskText, int newUrgency, int newDueDate) {
+    taskText = newTaskText;
+    urgency = newUrgency;
+    dueDate = newDueDate;
     completed = false;
 }
 
@@ -36,5 +36,6 @@ int Task :: getDueDate() {
 }
 
 bool Task :: isCompleted() {
-    return (completed) ? true : false;
+    if (completed) { return true; }
+    else { return false; }
 }
