@@ -8,7 +8,9 @@ Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNote
     lastAction = "No last action written";
 }
 
+//
 // getter methods
+//
 std::vector<Task> Project :: returnTaskList() {
     return tasks;
 }
@@ -24,8 +26,9 @@ std::string Project :: returnDescription() {
 std::string Project :: returnLastAction() {
     return lastAction;
 }
-
+//
 // data manipulation
+//
 void Project :: addTask(Task task) {
     tasks.push_back(task);
 }
