@@ -20,8 +20,7 @@ class Project {
         std::string description;
 
     public:
-        Project(std::vector<Task> tasks, std::vector<Note> notes,
-                std::string lastAction, std::string description);
+        Project(std::vector<Task> tasks, std::vector<Note> notes, std::string description);
         
         // data manipulation methods
         void addTask(Task task);
