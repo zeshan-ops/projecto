@@ -43,8 +43,17 @@ TEST_SUITE("Project Object Tests") {
         }
 
         SUBCASE("Deleting a task") {
-            testProject.deleteTask(1);
+            testProject.deleteTask(0);
             CHECK(testProject.returnTaskList().size() == 0);
+        }
+
+        SUBCASE("Editing a task") {
+            testProject.editTask(0, "Edited task", 20, 10, true);
+            testTaskVector[0].editTaskText("Edited task");
+            testTaskVector[0].editTaskDueDate(20);
+            testTaskVector[0].editTaskUrgency(10);
+            testTaskVector[0].editCompletion(true);
+            CHECK(testProject.returnTaskList() == testTaskVector);
         }
     }
 }

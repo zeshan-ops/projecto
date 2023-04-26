@@ -35,9 +35,6 @@ class Project {
 
         void editDescription(std::string descriptionText);
 
-        void readProjectData(std::string filename);
-        void writeProjectData(std::string filename);
-
         // getter methods
         std::vector<Task> returnTaskList();
         std::vector<Note> returnNoteList();

@@ -34,5 +34,5 @@ void Project :: addTask(Task task) {
 }
 
 void Project :: deleteTask(int taskID) {
-    tasks.erase(tasks.begin()+taskID-1);
+    tasks.erase(tasks.begin()+taskID);
 }
