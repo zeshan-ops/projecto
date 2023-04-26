@@ -46,3 +46,15 @@ void Project :: editTask(int taskID, std::string editedText, int editedDate, int
 void Project :: deleteTask(int taskID) {
     tasks.erase(tasks.begin()+taskID);
 }
+
+void Project :: addNote(Note note) {
+    notes.push_back(note);
+}
+
+void Project :: editNote(int noteID, std::string newNoteText) {
+    notes[noteID].editNoteText(newNoteText);
+}
+
+void Project :: deleteNote(int noteID) {
+    notes.erase(notes.begin()+noteID);
+}
