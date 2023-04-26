@@ -13,7 +13,9 @@ add_library(model STATIC
     src/model/note.cpp
     src/model/note.h
     src/model/project.cpp
-    src/model/project.h)
+    src/model/project.h
+    src/model/txtDataParser.cpp
+    src/model/txtDataParser.h)
 
 target_compile_features(tests PRIVATE cxx_std_14)
 
