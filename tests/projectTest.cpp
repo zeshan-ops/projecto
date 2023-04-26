@@ -90,4 +90,28 @@ TEST_SUITE("Project Object Tests") {
             CHECK(testProject.returnNoteList() == testNoteVector);
         }
     }
+
+    TEST_CASE("Last action and description modification") {
+        std::vector<Task> testTaskVector;
+        Task testTask("Test Task", 0, 0);
+        testTaskVector.push_back(testTask);
+
+        std::vector<Note> testNoteVector;
+        Note testNote("Test Note");
+        testNoteVector.push_back(testNote);
+
+        std::string testDescription = "Test Description";
+
+        Project testProject(testTaskVector, testNoteVector, testDescription);
+
+        SUBCASE("Editing last action") {
+            testProject.changeLastAction("Changed last action");
+            CHECK(testProject.returnLastAction() == "Changed last action");
+        }
+
+        SUBCASE("Editing description") {
+            testProject.changeLastAction("Changed description");
+            CHECK(testProject.returnDescription() == "Changed description");
+        }
+    }
 }
