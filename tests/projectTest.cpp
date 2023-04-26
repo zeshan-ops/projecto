@@ -105,12 +105,12 @@ TEST_SUITE("Project Object Tests") {
         Project testProject(testTaskVector, testNoteVector, testDescription);
 
         SUBCASE("Editing last action") {
-            testProject.changeLastAction("Changed last action");
+            testProject.editLastAction("Changed last action");
             CHECK(testProject.returnLastAction() == "Changed last action");
         }
 
         SUBCASE("Editing description") {
-            testProject.changeLastAction("Changed description");
+            testProject.editDescription("Changed description");
             CHECK(testProject.returnDescription() == "Changed description");
         }
     }

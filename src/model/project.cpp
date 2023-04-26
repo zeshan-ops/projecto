@@ -8,30 +8,7 @@ Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNote
     lastAction = "No last action written";
 }
 
-//
-// getter methods
-//
-
-std::vector<Task> Project :: returnTaskList() {
-    return tasks;
-}
-
-std::vector<Note> Project :: returnNoteList() {
-    return notes;
-}
-
-std::string Project :: returnDescription() {
-    return description;
-}
-
-std::string Project :: returnLastAction() {
-    return lastAction;
-}
-
-//
 // data manipulation
-//
-
 void Project :: addTask(Task task) {
     tasks.push_back(task);
 }
@@ -57,4 +34,29 @@ void Project :: editNote(int noteID, std::string newNoteText) {
 
 void Project :: deleteNote(int noteID) {
     notes.erase(notes.begin()+noteID);
+}
+
+void Project :: editLastAction(std::string lastActionText) {
+    lastAction = lastActionText;
+}
+
+void Project :: editDescription(std::string descriptionText) {
+    description = descriptionText;
+}
+
+// getter methods
+std::vector<Task> Project :: returnTaskList() {
+    return tasks;
+}
+
+std::vector<Note> Project :: returnNoteList() {
+    return notes;
+}
+
+std::string Project :: returnDescription() {
+    return description;
+}
+
+std::string Project :: returnLastAction() {
+    return lastAction;
 }

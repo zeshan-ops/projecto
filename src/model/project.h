@@ -31,7 +31,7 @@ class Project {
         void editNote(int noteID, std::string newNoteText);
         void deleteNote(int noteID);
 
-        void changeLastAction(std::string lastActionText);
+        void editLastAction(std::string lastActionText);
 
         void editDescription(std::string descriptionText);
 
