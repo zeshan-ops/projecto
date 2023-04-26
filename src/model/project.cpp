@@ -1,14 +1,17 @@
 #include "project.h"
 
-// constructor
-Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNotes, std::string initialDescription) {
+////////////////////////////////////////////////////////////////////////////////
+/* CONSTRUCTOR */
+Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNotes, 
+                   std::string initialDescription) {
     tasks = initialTasks;
     notes = initialNotes;
     description = initialDescription;
     lastAction = "No last action written";
 }
 
-// data manipulation
+////////////////////////////////////////////////////////////////////////////////
+/* DATA MANIPULATION (SETTERS & EDITORS) */
 void Project :: addTask(Task task) {
     tasks.push_back(task);
 }
@@ -44,7 +47,8 @@ void Project :: editDescription(std::string descriptionText) {
     description = descriptionText;
 }
 
-// getter methods
+////////////////////////////////////////////////////////////////////////////////
+/* GETTERS */
 std::vector<Task> Project :: returnTaskList() {
     return tasks;
 }
