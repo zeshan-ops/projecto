@@ -16,7 +16,8 @@ void Project :: addTask(Task task) {
     tasks.push_back(task);
 }
 
-void Project :: editTask(int taskID, std::string editedText, int editedDate, int editedUrg, bool editedCompletion) {
+void Project :: editTask(int taskID, std::string editedText, int editedDate,
+                         int editedUrg, bool editedCompletion) {
     tasks[taskID].editTaskText(editedText);
     tasks[taskID].editTaskDueDate(editedDate);
     tasks[taskID].editTaskUrgency(editedUrg);
