@@ -28,7 +28,7 @@ class Project {
         void deleteTask(int taskID);
 
         void addNote(Note note);
-        void editNote(int noteID);
+        void editNote(int noteID, std::string newNoteText);
         void deleteNote(int noteID);
 
         void changeLastAction(std::string lastActionText);
