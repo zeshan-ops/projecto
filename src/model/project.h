@@ -24,7 +24,7 @@ class Project {
         
         // data manipulation methods
         void addTask(Task task);
-        void editTask(int taskID);
+        void editTask(int taskID, std::string editedText, int editedDate, int editedUrg, bool editedCompletion);
         void deleteTask(int taskID);
 
         void addNote(Note note);
