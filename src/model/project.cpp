@@ -36,13 +36,14 @@ void Project :: addTask(Task task) {
     tasks.push_back(task);
 }
 
-void Project :: deleteTask(int taskID) {
-    tasks.erase(tasks.begin()+taskID);
-}
-
 void Project :: editTask(int taskID, std::string editedText, int editedDate, int editedUrg, bool editedCompletion) {
     tasks[taskID].editTaskText(editedText);
     tasks[taskID].editTaskDueDate(editedDate);
     tasks[taskID].editTaskUrgency(editedUrg);
     tasks[taskID].editCompletion(editedCompletion);
 }
+
+void Project :: deleteTask(int taskID) {
+    tasks.erase(tasks.begin()+taskID);
+}
+
