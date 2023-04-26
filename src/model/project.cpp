@@ -46,4 +46,3 @@ void Project :: editTask(int taskID, std::string editedText, int editedDate, int
 void Project :: deleteTask(int taskID) {
     tasks.erase(tasks.begin()+taskID);
 }
-
