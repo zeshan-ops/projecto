@@ -1,4 +1,5 @@
-# CLI Project Management Tool (Name TBC)
+# Projecto
+Command line coding project management tool
 **Status**: W.I.P.
 
 ## Description
