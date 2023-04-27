@@ -17,14 +17,14 @@ Blank space for documentation later
 
 using json = nlohmann::json;
 
-bool validateFile(std::string filename);
+// bool validateFile(std::string filename);
 
 // data reading
 json fileReader(std::string filename);
-std::vector<Task> readTasks(std::string filename);
-std::vector<Note> readNotes(std::string filename);
-std::string readDescription(std::string filename);
-std::string readLastAction(std::string filename);
+std::vector<Task> readTasks(json projectData);
+std::vector<Note> readNotes(json projectData);
+std::string readDescription(json projectData);
+std::string readLastAction(json projectData);
 
 // data writing
 bool writeTasks(std::vector<Task> tasks);

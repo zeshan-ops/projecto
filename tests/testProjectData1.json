@@ -1,6 +1,6 @@
 {
-    "Description" : "Test project",
-    "Last Action" : "No last action taken",
+    "Description" : "A test project for unit testing",
+    "Last Action" : "The last thing I did was create this unit test file",
     "Tasks" : [
         {
             "taskText" : "Task 1",
