@@ -5,7 +5,7 @@ TEST_SUITE("Basic data reading test") {
     
     TEST_CASE("File validation") {
         CHECK(validateFile("improperFile.txt") == false);
-        CHECK(validateFile("properFile.txt") == true);
+        CHECK(validateFile("testProjectData1.txt") == true);
     }
 
     TEST_CASE("Reading tasks") {
@@ -18,7 +18,7 @@ TEST_SUITE("Basic data reading test") {
         testTasks.push_back(task2);
         testTasks.push_back(task3);
 
-        CHECK(readTasks("testData.txt") == testTasks);
+        CHECK(readTasks("testProjectData1.json") == testTasks);
     }
 
     TEST_CASE("Reading notes") {
@@ -31,14 +31,14 @@ TEST_SUITE("Basic data reading test") {
         testNotes.push_back(note2);
         testNotes.push_back(note3);
 
-        CHECK(readNotes("testData.txt") == testNotes);
+        CHECK(readNotes("testProjectData1.json") == testNotes);
     }
 
     TEST_CASE("Reading description and last action") {
         std::string description = "A test project for unit testing";
         std::string lastAction = "The last thing I did was create this unit test file";
 
-        CHECK(readDescription("testData.txt") == description);
-        CHECK(readLastAction("testData.txt") == lastAction);
+        CHECK(readDescription("testProjectData1.txt") == description);
+        CHECK(readLastAction("testProjectData1.txt") == lastAction);
     }
 }

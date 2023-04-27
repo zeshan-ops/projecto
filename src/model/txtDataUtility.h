@@ -13,10 +13,14 @@ Blank space for documentation later
 #include <fstream>
 #include "task.h"
 #include "note.h"
+#include "json.hpp"
+
+using json = nlohmann::json;
 
 bool validateFile(std::string filename);
 
 // data reading
+json fileReader(std::string filename);
 std::vector<Task> readTasks(std::string filename);
 std::vector<Note> readNotes(std::string filename);
 std::string readDescription(std::string filename);

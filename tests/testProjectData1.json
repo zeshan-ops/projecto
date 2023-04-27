@@ -1,0 +1,26 @@
+{
+    "Description" : "Test project",
+    "Last Action" : "No last action taken",
+    "Tasks" : [
+        {
+            "taskText" : "Task 1",
+            "taskUrg" : 0,
+            "taskDue" : 0,
+            "taskComplete" : false
+        },
+        {
+            "taskText" : "Task 2",
+            "taskUrg" : 0,
+            "taskDue" : 0,
+            "taskComplete" : false
+        }
+    ],
+    "Notes" : [
+        {
+            "noteText" : "Note 1"
+        },
+        {
+            "noteText" : "Note 2"
+        }
+    ]
+}
