@@ -12,7 +12,7 @@ Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNote
 
 ////////////////////////////////////////////////////////////////////////////////
 /* DATA MANIPULATION (SETTERS & EDITORS) */
-void Project :: addTask(Task task) {
+void Project :: addTask(const Task& task) {
     tasks.push_back(task);
 }
 
@@ -28,7 +28,7 @@ void Project :: deleteTask(int taskID) {
     tasks.erase(tasks.begin()+taskID);
 }
 
-void Project :: addNote(Note note) {
+void Project :: addNote(const Note& note) {
     notes.push_back(note);
 }
 

@@ -23,12 +23,12 @@ class Project {
         Project(std::vector<Task> tasks, std::vector<Note> notes, std::string description);
         
         // data manipulation methods
-        void addTask(Task task);
+        void addTask(const Task& task);
         void editTask(int taskID, std::string editedText, int editedDate, int editedUrg, 
                       bool editedCompletion);
         void deleteTask(int taskID);
 
-        void addNote(Note note);
+        void addNote(const Note& note);
         void editNote(int noteID, std::string newNoteText);
         void deleteNote(int noteID);
 
