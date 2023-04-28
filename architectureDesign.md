@@ -13,5 +13,18 @@ For now, data storage will be done using JSON files. These files will be read fr
 The [Nlohmann JSON library](https://github.com/nlohmann/json) will be used to parse JSON data to and from the files, with extra functions then being used to pass this data to and from the project object. I suppose that this data storage aspect could be included in the controller part of the architecture, but I think it fits just as well here too.
 
 ## View
+The output to the terminal needs to be neat, simple and readable. There are to be different views:
+- Brief project overview
+- Detailed project view
+- Brief tasks overview
+- Detailed tasks view
+- Brief notes overview
+- Detailed notes view
+- Individual task view
+- Individual note view
+- Last action view
+All tasks and notes should have their corresponding data shown. There should also be a filtering option for tasks by property - i.e. by urgency or by dueDate
+
+The principle of the view code will be for individual functions/classes to generate the view text, then pass the view text to an outputter that displays it.
 
 ## Controller
