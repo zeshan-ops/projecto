@@ -15,7 +15,7 @@ class Note {
 
     public:
         Note(std::string initialNoteText);
-        void editNoteText(std::string newNoteText);
+        void editNoteText(const std::string& newNoteText);
         std::string getNoteNext();
 
         bool operator==(const Note& a) const {

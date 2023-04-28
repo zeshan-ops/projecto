@@ -4,7 +4,7 @@ Note :: Note(std::string initialNoteText) {
     noteText = initialNoteText;
 }
 
-void Note :: editNoteText(std::string newNoteText) {
+void Note :: editNoteText(const std::string& newNoteText) {
     noteText = newNoteText;
 }
 
