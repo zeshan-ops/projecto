@@ -37,10 +37,10 @@ class Project {
         void editDescription(std::string descriptionText);
 
         // getter methods
-        const std::vector<Task> returnTaskList();
-        const std::vector<Note> returnNoteList();
-        const std::string returnLastAction();
-        const std::string returnDescription();
+        std::vector<Task> returnTaskList() const;
+        std::vector<Note> returnNoteList() const;
+        std::string returnLastAction() const;
+        std::string returnDescription() const;
 };
 
 #endif

@@ -50,18 +50,18 @@ void Project :: editDescription(std::string descriptionText) {
 
 ////////////////////////////////////////////////////////////////////////////////
 /* GETTERS */
-const std::vector<Task> Project :: returnTaskList() {
+std::vector<Task> Project :: returnTaskList() const {
     return tasks;
 }
 
-const std::vector<Note> Project :: returnNoteList() {
+std::vector<Note> Project :: returnNoteList() const {
     return notes;
 }
 
-const std::string Project :: returnDescription() {
+std::string Project :: returnDescription() const {
     return description;
 }
 
-const std::string Project :: returnLastAction() {
+std::string Project :: returnLastAction() const {
     return lastAction;
 }
