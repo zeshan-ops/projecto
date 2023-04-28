@@ -15,7 +15,7 @@ The program will have basic functionality:
 I am using TDD to develop this program: a desired feature is decided and its usage (i.e. the way the functions are called in the code) is preliminarily decided, then unit-tests are written and code is written to pass the tests. Code is then refactored. [Doctest](https://github.com/doctest/doctest) is used for testing, the header file is included in the tests folder (doctest.h).
 
 **Documents pertaining to design of project**:
- - [Software Architecture Design](architectureDesign.md)
+ - [Software Architecture Design](docs/design/architectureDesign.md)
 
 ## Installation
 
