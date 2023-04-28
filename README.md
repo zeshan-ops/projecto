@@ -11,6 +11,11 @@ The program will have basic functionality:
 - Ability to add, modify, delete and complete tasks and notes
 - Ability to add a "last action message" that will help to remind of the last action(s) taken the last time the project was worked on
 
+***Current Features***:
+- Add, delete and edit tasks
+- Add, delete and edit notes
+- Edit last action taken on project
+
 ## Project information
 I am using TDD to develop this program: a desired feature is decided and its usage (i.e. the way the functions are called in the code) is preliminarily decided, then unit-tests are written and code is written to pass the tests. Code is then refactored. [Doctest](https://github.com/doctest/doctest) is used for testing, the header file is included in the tests folder (doctest.h).
 
@@ -19,7 +24,7 @@ I am using TDD to develop this program: a desired feature is decided and its usa
 
 ## Installation
 
-## How to use {NAME TBC}
+## How to use
 
 
 
