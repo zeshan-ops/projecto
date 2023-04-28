@@ -21,10 +21,10 @@ using json = nlohmann::json;
 
 // data reading
 json fileReader(std::string filename);
-std::vector<Task> readTasks(json projectData);
-std::vector<Note> readNotes(json projectData);
-std::string readDescription(json projectData);
-std::string readLastAction(json projectData);
+std::vector<Task> readTasks(const json& projectData);
+std::vector<Note> readNotes(const json& projectData);
+std::string readDescription(const json& projectData);
+std::string readLastAction(const json& projectData);
 
 // data writing
 bool writeTasks(std::vector<Task> tasks);

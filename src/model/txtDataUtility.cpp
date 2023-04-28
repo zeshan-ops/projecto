@@ -14,7 +14,7 @@ json fileReader(std::string filename) {
     return projectData;
 }
 
-std::vector<Task> readTasks(json projectData) {
+std::vector<Task> readTasks(const json& projectData) {
     std::vector<Task> storedTasks;
 
     for(int i = 0; i < projectData["Tasks"].size(); i++) {
@@ -31,7 +31,7 @@ std::vector<Task> readTasks(json projectData) {
     return storedTasks;
 }
 
-std::vector<Note> readNotes(json projectData) {
+std::vector<Note> readNotes(const json& projectData) {
     std::vector<Note> storedNotes;
 
     for(int i = 0; i<projectData["Notes"].size(); i++) {
@@ -44,10 +44,10 @@ std::vector<Note> readNotes(json projectData) {
     return storedNotes;
 }
 
-std::string readDescription(json projectData) {
+std::string readDescription(const json& projectData) {
     return projectData["Description"];
 }
 
-std::string readLastAction(json projectData) {
+std::string readLastAction(const json& projectData) {
     return projectData["Last Action"];
 }
