@@ -18,7 +18,7 @@ std::vector<Task> readTasks(const json& projectData) {
     std::vector<Task> storedTasks;
 
     for(int i = 0; i < projectData["Tasks"].size(); i++) {
-        std::string text = projectData["Tasks"][i]["taskText"];
+        std::string text     = projectData["Tasks"][i]["taskText"];
         int taskUrg          = projectData["Tasks"][i]["taskUrg"];
         int taskDue          = projectData["Tasks"][i]["taskDue"];
         bool taskCompletion  = projectData["Tasks"][i]["taskComplete"];
