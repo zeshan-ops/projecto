@@ -12,7 +12,7 @@ TEST_SUITE("Basic data reading test") {
 
     TEST_CASE("Reading json data") {
 
-        json projectData = fileReader("testProjectData1.json");
+        json projectData = fileReader("readingJsonDataTest.json");
 
         SUBCASE("Reading task data") {
             std::vector<Task> testTasks;
