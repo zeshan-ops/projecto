@@ -21,10 +21,10 @@ class Task {
         Task(std::string taskText, int urgency, int dueDate);
 
         // setter functions
-        void editTaskText(std::string newTaskText);
-        void editTaskUrgency(int newUrgency);
-        void editTaskDueDate(int newDueDate);
-        void editCompletion(bool completion);
+        void editTaskText(const std::string& newTaskText);
+        void editTaskUrgency(const int& newUrgency);
+        void editTaskDueDate(const int& newDueDate);
+        void editCompletion(const bool& completion);
 
         // getter functions
         std::string getTaskText();

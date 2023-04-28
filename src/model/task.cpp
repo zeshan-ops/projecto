@@ -7,19 +7,19 @@ Task :: Task(std::string newTaskText, int newUrgency, int newDueDate) {
     completed = false;
 }
 
-void Task :: editTaskText(std::string newTaskText) {
+void Task :: editTaskText(const std::string& newTaskText) {
     taskText = newTaskText;
 }
 
-void Task :: editTaskUrgency(int newUrgency) {
+void Task :: editTaskUrgency(const int& newUrgency) {
     urgency = newUrgency;
 }
 
-void Task :: editTaskDueDate(int newDueDate) {
+void Task :: editTaskDueDate(const int& newDueDate) {
     dueDate = newDueDate;
 }
 
-void Task :: editCompletion(bool completion) {
+void Task :: editCompletion(const bool& completion) {
     completed = completion;
 }
 
