@@ -23,6 +23,7 @@ The output to the terminal needs to be neat, simple and readable. There are to b
 - Individual task view
 - Individual note view
 - Last action view
+
 All tasks and notes should have their corresponding data shown. There should also be a filtering option for tasks by property - i.e. by urgency or by dueDate
 
 The principle of the view code will be for individual functions/classes to generate the view text, then pass the view text to an outputter that displays it.
