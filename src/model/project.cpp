@@ -10,7 +10,7 @@ Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNote
     lastAction = "No last action written";
 }
 
-Project :: Project(json projectData) {
+Project :: Project(const json& projectData) {
     tasks = readTasks(projectData);
     notes = readNotes(projectData);
     description = readDescription(projectData);
