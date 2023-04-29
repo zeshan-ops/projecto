@@ -15,6 +15,7 @@ BLANK SPACE FOR DOCUMENTATION LATER
 
 class Project {
     private:
+        std::string projectName;
         std::vector<Task> tasks;
         std::vector<Note> notes;
         std::string lastAction;
@@ -22,7 +23,7 @@ class Project {
 
     public:
         // Manual constructor
-        Project(std::vector<Task> tasks, std::vector<Note> notes, std::string description);
+        Project(std::vector<Task> tasks, std::vector<Note> notes, std::string description, std::string projectName);
 
         // JSON data constructor
         Project(const json& projectData);
@@ -38,14 +39,15 @@ class Project {
         void deleteNote(int noteID);
 
         void editLastAction(std::string lastActionText);
-
         void editDescription(std::string descriptionText);
+        void editName(std::string newName);
 
         // getter methods
         std::vector<Task> returnTaskList() const;
         std::vector<Note> returnNoteList() const;
         std::string returnLastAction() const;
         std::string returnDescription() const;
+        std::string returnName() const;
 
         // comparison operator
         bool operator==(const Project& a) const {

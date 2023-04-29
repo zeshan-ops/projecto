@@ -51,3 +51,7 @@ std::string readDescription(const json& projectData) {
 std::string readLastAction(const json& projectData) {
     return projectData["Last Action"];
 }
+
+std::string readName(const json& projectData) {
+    return projectData["Project Name"];
+}

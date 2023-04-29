@@ -13,14 +13,16 @@ TEST_SUITE("Project Object Tests") {
         testNoteVector.push_back(testNote);
 
         std::string testDescription = "Test Description";
+        std::string testName = "Test Project";
 
-        Project testProject(testTaskVector, testNoteVector, testDescription);
+        Project testProject(testTaskVector, testNoteVector, testDescription, testName);
         
         SUBCASE("Correct initialisation test") {
             CHECK(testProject.returnTaskList() == testTaskVector);
             CHECK(testProject.returnNoteList() == testNoteVector);
             CHECK(testProject.returnDescription() == testDescription);
             CHECK(testProject.returnLastAction() == "No last action written");
+            CHECK(testProject.returnName() == "Test Project");
         }
     }
 
@@ -41,6 +43,7 @@ TEST_SUITE("Project Object Tests") {
 
         std::string description = "A test project for unit testing";
         std::string lastAction = "The last thing I did was create this unit test file";
+        std::string name = "Test Project";
         
         json projectData = fileReader("readingJsonDataTest.json");
         Project testProject(projectData);
@@ -50,10 +53,11 @@ TEST_SUITE("Project Object Tests") {
             CHECK(testProject.returnNoteList() == testNotes);
             CHECK(testProject.returnDescription() == description);
             CHECK(testProject.returnLastAction() == lastAction);
+            CHECK(testProject.returnName() == name);
         }
 
         SUBCASE("Constructor equivalence") {
-            Project manualProj(testTasks,testNotes,description);
+            Project manualProj(testTasks,testNotes,description, name);
             manualProj.editLastAction(lastAction);
 
             CHECK(manualProj == testProject);
@@ -71,8 +75,9 @@ TEST_SUITE("Project Object Tests") {
         testNoteVector.push_back(testNote);
 
         std::string testDescription = "Test Description";
+        std::string name = "Test Project";
 
-        Project testProject(testTaskVector, testNoteVector, testDescription);
+        Project testProject(testTaskVector, testNoteVector, testDescription, name);
 
         SUBCASE("Adding a task") {
             Task newTask("New task", 0, 0);
@@ -106,8 +111,9 @@ TEST_SUITE("Project Object Tests") {
         testNoteVector.push_back(testNote);
 
         std::string testDescription = "Test Description";
+        std::string name = "Test Project";
 
-        Project testProject(testTaskVector, testNoteVector, testDescription);
+        Project testProject(testTaskVector, testNoteVector, testDescription, name);
 
         SUBCASE("Adding a note") {
             Note newNote("New note text");
@@ -128,7 +134,7 @@ TEST_SUITE("Project Object Tests") {
         }
     }
 
-    TEST_CASE("Last action and description modification") {
+    TEST_CASE("Last action and description and name modification") {
         std::vector<Task> testTaskVector;
         Task testTask("Test Task", 0, 0);
         testTaskVector.push_back(testTask);
@@ -138,8 +144,9 @@ TEST_SUITE("Project Object Tests") {
         testNoteVector.push_back(testNote);
 
         std::string testDescription = "Test Description";
+        std::string name = "Test Project";
 
-        Project testProject(testTaskVector, testNoteVector, testDescription);
+        Project testProject(testTaskVector, testNoteVector, testDescription, name);
 
         SUBCASE("Editing last action") {
             testProject.editLastAction("Changed last action");
@@ -149,6 +156,11 @@ TEST_SUITE("Project Object Tests") {
         SUBCASE("Editing description") {
             testProject.editDescription("Changed description");
             CHECK(testProject.returnDescription() == "Changed description");
+        }
+
+        SUBCASE("Editing name") {
+            testProject.editName("New Project Name");
+            CHECK(testProject.returnName() == "New Project Name");
         }
     }
 }

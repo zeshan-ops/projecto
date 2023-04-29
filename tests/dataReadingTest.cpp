@@ -42,12 +42,14 @@ TEST_SUITE("Basic data reading test") {
             CHECK(projectNotes == testNotes);
         }
 
-        SUBCASE("Reading description and last action") {
+        SUBCASE("Reading description and last action and name") {
             std::string description = "A test project for unit testing";
             std::string lastAction = "The last thing I did was create this unit test file";
+            std::string name = "Test Project";
 
             CHECK(readDescription(projectData) == description);
             CHECK(readLastAction(projectData) == lastAction);
+            CHECK(readName(projectData) == name);
         }
     }
 }

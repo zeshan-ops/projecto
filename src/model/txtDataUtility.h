@@ -25,6 +25,7 @@ std::vector<Task> readTasks(const json& projectData);
 std::vector<Note> readNotes(const json& projectData);
 std::string readDescription(const json& projectData);
 std::string readLastAction(const json& projectData);
+std::string readName(const json& projectData);
 
 // data writing
 bool writeTasks(std::vector<Task> tasks);

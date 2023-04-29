@@ -3,11 +3,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 /* CONSTRUCTORS */
 Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNotes, 
-                   std::string initialDescription) {
+                   std::string initialDescription, std::string initialName) {
     tasks = initialTasks;
     notes = initialNotes;
     description = initialDescription;
     lastAction = "No last action written";
+    projectName = initialName;
 }
 
 Project :: Project(const json& projectData) {
@@ -15,6 +16,7 @@ Project :: Project(const json& projectData) {
     notes = readNotes(projectData);
     description = readDescription(projectData);
     lastAction = readLastAction(projectData);
+    projectName = readName(projectData);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +57,10 @@ void Project :: editDescription(std::string descriptionText) {
     description = descriptionText;
 }
 
+void Project :: editName(std::string newName) {
+    projectName = newName;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 /* GETTERS */
 std::vector<Task> Project :: returnTaskList() const {
@@ -71,4 +77,8 @@ std::string Project :: returnDescription() const {
 
 std::string Project :: returnLastAction() const {
     return lastAction;
+}
+
+std::string Project :: returnName() const {
+    return projectName;
 }
