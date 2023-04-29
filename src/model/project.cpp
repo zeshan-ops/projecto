@@ -1,13 +1,20 @@
 #include "project.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-/* CONSTRUCTOR */
+/* CONSTRUCTORS */
 Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNotes, 
                    std::string initialDescription) {
     tasks = initialTasks;
     notes = initialNotes;
     description = initialDescription;
     lastAction = "No last action written";
+}
+
+Project :: Project(json projectData) {
+    tasks = readTasks(projectData);
+    notes = readNotes(projectData);
+    description = readDescription(projectData);
+    lastAction = readLastAction(projectData);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

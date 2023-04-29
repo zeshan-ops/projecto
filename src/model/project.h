@@ -11,6 +11,7 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #include <string>
 #include "task.h"
 #include "note.h"
+#include "txtDataUtility.h"
 
 class Project {
     private:
@@ -20,7 +21,11 @@ class Project {
         std::string description;
 
     public:
+        // Manual constructor
         Project(std::vector<Task> tasks, std::vector<Note> notes, std::string description);
+
+        // JSON data constructor
+        Project(json projectData);
         
         // data manipulation methods
         void addTask(const Task& task);
