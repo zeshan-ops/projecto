@@ -8,4 +8,4 @@ Blank space for documentation later
 #include <iomanip>
 #include "../model/project.h"
 
-void showProject(Project project);
+void showProject(const Project& project);

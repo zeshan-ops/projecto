@@ -2,11 +2,14 @@ cmake_minimum_required(VERSION 3.26)
 
 project(projecto)
 
-add_executable(tests
+add_executable(test_model
     tests/taskTest.cpp
     tests/projectTest.cpp
     tests/noteTest.cpp
     tests/dataReadingTest.cpp)
+
+add_executable(test_view
+    src/view/main.cpp)
 
 add_library(model STATIC
     src/model/task.cpp
@@ -19,7 +22,14 @@ add_library(model STATIC
     src/model/txtDataUtility.h
     src/model/json.hpp)
 
-target_compile_features(tests PRIVATE cxx_std_11)
-target_compile_features(model PRIVATE cxx_std_11)
+add_library(view STATIC
+    src/view/projectView.cpp
+    src/view/projectView.h)
 
-target_link_libraries(tests model)
+target_compile_features(test_model PRIVATE cxx_std_11)
+target_compile_features(model PRIVATE cxx_std_11)
+target_compile_features(view PRIVATE cxx_std_11)
+target_compile_features(test_view PRIVATE cxx_std_11)
+
+target_link_libraries(test_model model)
+target_link_libraries(test_view model view)
