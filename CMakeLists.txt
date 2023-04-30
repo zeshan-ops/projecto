@@ -23,6 +23,7 @@ add_library(model STATIC
     src/model/json.hpp)
 
 add_library(view STATIC
+    src/view/ansiMacros.h
     src/view/projectView.cpp
     src/view/projectView.h)
 
