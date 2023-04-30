@@ -4,6 +4,9 @@ ANSI Sequence Macros Defined For Cleaner Implementation In View Modules
 
 */
 
+#ifndef ANSIMACROS_H
+#define ANSIMACROS_H
+
 // TEXT STATE MODIFIERS
 #define txtReset "\033[0m"
 #define txtBold "\033[1m"
@@ -32,3 +35,4 @@ ANSI Sequence Macros Defined For Cleaner Implementation In View Modules
 #define bgCyan "\033[96m"
 #define bgWhite "\033[97m"
 
+#endif
