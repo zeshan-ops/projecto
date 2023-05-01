@@ -8,8 +8,8 @@ void showProjectView(const Project& project) {
     std::cout << std::endl; // blank line spacer
 
     // Project Name
-    std::cout << txtBold << txtYellow << "PROJECT: " << txtReset
-              << txtItalic << txtUnderline << std::setw(10) << project.returnName() 
+    std::cout << txtBold << txtYellow << txtUnderline "PROJECT:" << txtReset << " "
+              << txtItalic << std::setw(10) << project.returnName() 
               << txtReset
               << std::endl;
     
