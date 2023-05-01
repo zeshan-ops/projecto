@@ -8,5 +8,6 @@ Blank space for documentation later
 #include <iomanip>
 #include "../model/project.h"
 #include "ansiMacros.h"
+#include "viewUtilities.h"
 
 void showProject(const Project& project);
