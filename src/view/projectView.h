@@ -10,4 +10,4 @@ Blank space for documentation later
 #include "ansiMacros.h"
 #include "viewUtilities.h"
 
-void showProject(const Project& project);
+void showProjectView(const Project& project);

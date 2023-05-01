@@ -6,7 +6,7 @@ int main() {
 
     Project project(projectData);
 
-    showProject(project);
+    showProjectView(project);
 
     return 0;
 
