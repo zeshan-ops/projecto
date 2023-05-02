@@ -1,9 +1,9 @@
 #include "txtDataUtility.h"
 
 /*
-bool validateFile(std::string filename) {
-    
-}
+
+bool validateFile(std::string filename) {}
+
 */
 
 json fileReader(std::string filename) {
@@ -54,4 +54,12 @@ std::string readLastAction(const json& projectData) {
 
 std::string readName(const json& projectData) {
     return projectData["Project Name"];
+}
+
+void writeProjectData(const json& projectData, std::string filename) {
+    std::ofstream outputFile(filename);
+
+    outputFile << projectData.dump();
+
+    outputFile.close();
 }

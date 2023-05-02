@@ -8,6 +8,12 @@ int main() {
 
     showProjectView(project);
 
-    return 0;
+    writeProjectData(project.outputProjectData(), "projectoData.json");
 
+    json projectData2 = fileReader("projectoData.json");
+
+    Project project2(projectData2);
+    showProjectView(project2);
+
+    return 0;
 }

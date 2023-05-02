@@ -82,3 +82,23 @@ std::string Project :: returnLastAction() const {
 std::string Project :: returnName() const {
     return projectName;
 }
+
+json Project :: outputProjectData() {
+    json outputProject;
+    outputProject["Project Name"] = projectName;
+    outputProject["Description"] = description;
+    outputProject["Last Action"] = lastAction;
+    
+    for(int i = 0; i < tasks.size(); i++) {
+        outputProject["Tasks"][i]["taskText"] = tasks[i].getTaskText();
+        outputProject["Tasks"][i]["taskUrg"] = tasks[i].getUrgency();
+        outputProject["Tasks"][i]["taskDue"] = tasks[i].getDueDate();
+        outputProject["Tasks"][i]["taskComplete"] = tasks[i].isCompleted();
+    }
+
+    for(int i =0; i<notes.size(); i++) {
+        outputProject["Notes"][i]["noteText"] = notes[i].getNoteNext();
+    }
+    
+    return outputProject;
+}

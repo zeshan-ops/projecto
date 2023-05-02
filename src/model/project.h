@@ -56,6 +56,9 @@ class Project {
                 && a.description == description
                 && a.lastAction == lastAction;
         }
+
+        // outputting project as a JSON
+        json outputProjectData();
 };
 
 #endif

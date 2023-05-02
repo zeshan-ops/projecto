@@ -33,4 +33,6 @@ bool writeNotes(std::vector<Note> notes);
 bool writeDescription(std::string description);
 bool writeLastAction(std::string lastAction);
 
+void writeProjectData(const json& projectData, std::string filename);
+
 #endif
