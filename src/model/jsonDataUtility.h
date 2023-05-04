@@ -28,10 +28,10 @@ std::string readLastAction(const json& projectData);
 std::string readName(const json& projectData);
 
 // data writing
-bool writeTasks(std::vector<Task> tasks);
-bool writeNotes(std::vector<Note> notes);
-bool writeDescription(std::string description);
-bool writeLastAction(std::string lastAction);
+// bool writeTasks(std::vector<Task> tasks);
+// bool writeNotes(std::vector<Note> notes);
+// bool writeDescription(std::string description);
+// bool writeLastAction(std::string lastAction);
 
 void writeProjectData(const json& projectData, std::string filename);
 

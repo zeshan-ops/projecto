@@ -1,7 +1,17 @@
-# Projecto
-Command line project management tool
+<div align=center>
 
-**Status**: W.I.P., v: 0.0.0
+<img src="assets/projectoLogo.png" alt="logo" width="500">
+
+</div>
+
+<div align=center>
+
+
+*Command line project management tool*
+
+***v***: 0.0.0 (W.I.P.)
+
+</div>
 
 ## Description
 Projecto is a command line interface tool for managing hobby projects. Like a very simple and stripped back [Taskwarrior](https://github.com/GothenburgBitFactory/taskwarrior). 

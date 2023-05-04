@@ -1,5 +1,5 @@
 #include "doctest.h"
-#include "../src/model/txtDataUtility.h"
+#include "../src/model/jsonDataUtility.h"
 
 TEST_SUITE("Basic data reading test") {
     

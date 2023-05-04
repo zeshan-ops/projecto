@@ -1,19 +1,12 @@
 #include "projectView.h"
-#include "../model/txtDataUtility.h"
+#include "../model/jsonDataUtility.h"
 
 int main() {
-    json projectData = fileReader("view_tester.json");
+    json projectData = fileReader("projectoData.json");
 
     Project project(projectData);
 
     showProjectView(project);
-
-    writeProjectData(project.outputProjectData(), "projectoData.json");
-
-    json projectData2 = fileReader("projectoData.json");
-
-    Project project2(projectData2);
-    showProjectView(project2);
 
     return 0;
 }

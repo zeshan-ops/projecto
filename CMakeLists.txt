@@ -19,8 +19,8 @@ add_library(model STATIC
     src/model/note.h
     src/model/project.cpp
     src/model/project.h
-    src/model/txtDataUtility.cpp
-    src/model/txtDataUtility.h
+    src/model/jsonDataUtility.cpp
+    src/model/jsonDataUtility.h
     src/model/json.hpp)
 
 add_library(view STATIC
