@@ -1,5 +1,5 @@
 # Software Architecture Design
-This project is built on the MVC architecture pattern. I chose this because it would help unit-testing and make implementing new features or new projects based on this one much easier. I am using TDD to develop this project, information about testing can be found here: [Testing](docs/design/testing.md)
+This project is built on the MVC architecture pattern. I chose this because it would help unit-testing and make implementing new features or new projects based on this one much easier. I am using TDD to develop this project, information about testing can be found here: [Testing](testing.md)
 
 ## Model
 - [Model architecture](model.md)
