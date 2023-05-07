@@ -92,11 +92,10 @@ TEST_SUITE("Project Object Tests") {
         }
 
         SUBCASE("Editing a task") {
-            testProject.editTask(0, "Edited task", 20, 10, true);
+            testProject.editTask(0, Task("Edited task", 10, 20));
             testTaskVector[0].editTaskText("Edited task");
             testTaskVector[0].editTaskDueDate(20);
             testTaskVector[0].editTaskUrgency(10);
-            testTaskVector[0].editCompletion(true);
             CHECK(testProject.returnTaskList() == testTaskVector);
         }
     }
@@ -128,7 +127,7 @@ TEST_SUITE("Project Object Tests") {
         }
 
         SUBCASE("Editing a note") {
-            testProject.editNote(0, "Edited note");
+            testProject.editNote(0, Note("Edited note"));
             testNoteVector[0].editNoteText("Edited note");
             CHECK(testProject.returnNoteList() == testNoteVector);
         }

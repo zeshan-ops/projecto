@@ -25,12 +25,8 @@ void Project :: addTask(const Task& task) {
     tasks.push_back(task);
 }
 
-void Project :: editTask(int taskID, std::string editedText, int editedDate,
-                         int editedUrg, bool editedCompletion) {
-    tasks[taskID].editTaskText(editedText);
-    tasks[taskID].editTaskDueDate(editedDate);
-    tasks[taskID].editTaskUrgency(editedUrg);
-    tasks[taskID].editCompletion(editedCompletion);
+void Project :: editTask(int taskID, const Task& task) {
+    tasks[taskID] = task;
 }
 
 void Project :: deleteTask(int taskID) {
@@ -41,8 +37,8 @@ void Project :: addNote(const Note& note) {
     notes.push_back(note);
 }
 
-void Project :: editNote(int noteID, std::string newNoteText) {
-    notes[noteID].editNoteText(newNoteText);
+void Project :: editNote(int noteID, const Note& note) {
+    notes[noteID] = note;
 }
 
 void Project :: deleteNote(int noteID) {
