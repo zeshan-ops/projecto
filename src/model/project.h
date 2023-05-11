@@ -10,54 +10,43 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #include <vector>
 #include <string>
 #include "task.h"
-#include "note.h"
-#include "jsonDataUtility.h"
+#include "log.h"
 
 class Project {
     private:
         std::string projectName;
         std::vector<Task> tasks;
-        std::vector<Note> notes;
-        std::string lastAction;
-        std::string description;
+        std::vector<Log> logs;
 
     public:
         // Manual constructor
-        Project(std::vector<Task> tasks, std::vector<Note> notes, std::string description, std::string projectName);
+        Project(std::string name);
 
-        // JSON data constructor
-        Project(const json& projectData);
-        
         // data manipulation methods
         void addTask(const Task& task);
         void editTask(int taskID, const Task& task);
         void deleteTask(int taskID);
 
-        void addNote(const Note& note);
-        void editNote(int noteID, const Note& note);
-        void deleteNote(int noteID);
+        void addLog(const Log& note);
+        void deleteLog(int logID);
 
-        void editLastAction(std::string lastActionText);
-        void editDescription(std::string descriptionText);
-        void editName(std::string newName);
+        void setName(std::string newName);
 
         // getter methods
-        std::vector<Task> returnTaskList() const;
-        std::vector<Note> returnNoteList() const;
-        std::string returnLastAction() const;
-        std::string returnDescription() const;
-        std::string returnName() const;
+        std::vector<Task> getTasks() const;
+        Task getTask(int taskID) const;
+
+        std::vector<Log> getLogs() const;
+        Log getLog(int logID) const;
+
+        std::string getName() const;
 
         // comparison operator
         bool operator==(const Project& a) const {
             return a.tasks == tasks
-                && a.notes == notes
-                && a.description == description
-                && a.lastAction == lastAction;
+                && a.logs == logs
+                && a.projectName == projectName;
         }
-
-        // outputting project as a JSON
-        json outputProjectData();
 };
 
 #endif

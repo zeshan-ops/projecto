@@ -1,26 +1,13 @@
 #include "project.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-/* CONSTRUCTORS */
-Project :: Project(std::vector<Task> initialTasks, std::vector<Note> initialNotes, 
-                   std::string initialDescription, std::string initialName) {
-    tasks = initialTasks;
-    notes = initialNotes;
-    description = initialDescription;
-    lastAction = "No last action written";
-    projectName = initialName;
-}
-
-Project :: Project(const json& projectData) {
-    tasks = readTasks(projectData);
-    notes = readNotes(projectData);
-    description = readDescription(projectData);
-    lastAction = readLastAction(projectData);
-    projectName = readName(projectData);
+/* CONSTRUCTOR */
+Project :: Project(std::string name) {
+    projectName = name;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-/* DATA MANIPULATION (SETTERS & EDITORS) */
+/* TASK MANIPULATORS */
 void Project :: addTask(const Task& task) {
     tasks.push_back(task);
 }
@@ -33,68 +20,35 @@ void Project :: deleteTask(int taskID) {
     tasks.erase(tasks.begin()+taskID);
 }
 
-void Project :: addNote(const Note& note) {
-    notes.push_back(note);
+/* LOG MANIPULATORS*/
+void Project :: addLog(const Log& log) {
+    logs.push_back(log);
 }
 
-void Project :: editNote(int noteID, const Note& note) {
-    notes[noteID] = note;
-}
-
-void Project :: deleteNote(int noteID) {
-    notes.erase(notes.begin()+noteID);
-}
-
-void Project :: editLastAction(std::string lastActionText) {
-    lastAction = lastActionText;
-}
-
-void Project :: editDescription(std::string descriptionText) {
-    description = descriptionText;
-}
-
-void Project :: editName(std::string newName) {
-    projectName = newName;
+void Project :: deleteLog(int logID) {
+    logs.erase(logs.begin()+logID);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-/* GETTERS */
-std::vector<Task> Project :: returnTaskList() const {
+/* TASK GETTERS */
+std::vector<Task> Project :: getTasks() const {
     return tasks;
 }
 
-std::vector<Note> Project :: returnNoteList() const {
-    return notes;
+Task Project :: getTask(int taskID) const {
+    return tasks[taskID];
 }
 
-std::string Project :: returnDescription() const {
-    return description;
+/* LOG GETTERS */
+std::vector<Log> Project :: getLogs() const {
+    return logs;
 }
 
-std::string Project :: returnLastAction() const {
-    return lastAction;
+Log Project :: getLog(int logID) const {
+    return logs[logID];
 }
 
-std::string Project :: returnName() const {
+/* PROJECT GETTERS */
+std::string Project :: getName() const {
     return projectName;
-}
-
-json Project :: outputProjectData() {
-    json outputProject;
-    outputProject["Project Name"] = projectName;
-    outputProject["Description"] = description;
-    outputProject["Last Action"] = lastAction;
-    
-    for(int i = 0; i < tasks.size(); i++) {
-        outputProject["Tasks"][i]["taskText"] = tasks[i].getTaskText();
-        outputProject["Tasks"][i]["taskUrg"] = tasks[i].getUrgency();
-        outputProject["Tasks"][i]["taskDue"] = tasks[i].getDueDate();
-        outputProject["Tasks"][i]["taskComplete"] = tasks[i].isCompleted();
-    }
-
-    for(int i =0; i<notes.size(); i++) {
-        outputProject["Notes"][i]["noteText"] = notes[i].getNoteNext();
-    }
-    
-    return outputProject;
 }
