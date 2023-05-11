@@ -1,41 +1,41 @@
 #include "task.h"
 
-Task :: Task(std::string newTaskText, int newUrgency, int newDueDate) {
-    taskText = newTaskText;
+Task :: Task(std::string text) {
+    taskText = text;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/* SETTERS */
+void Task :: setText(const std::string text) {
+    taskText = text;
+}
+
+void Task :: setUrgency(const urg newUrgency) {
     urgency = newUrgency;
-    dueDate = newDueDate;
-    completed = false;
 }
 
-void Task :: editTaskText(const std::string& newTaskText) {
-    taskText = newTaskText;
+void Task :: setDueDate(const sc::time_point<sc::system_clock>& newTime) {
+    dueDate = newTime;
 }
 
-void Task :: editTaskUrgency(const int& newUrgency) {
-    urgency = newUrgency;
-}
-
-void Task :: editTaskDueDate(const int& newDueDate) {
-    dueDate = newDueDate;
-}
-
-void Task :: editCompletion(const bool& completion) {
+void Task :: setCompleted(const bool completion) {
     completed = completion;
 }
 
-std::string Task :: getTaskText() {
+////////////////////////////////////////////////////////////////////////////////
+/* GETTERS */
+std::string Task :: getText() const {
     return taskText;
 }
 
-int Task :: getUrgency() {
+urg Task :: getUrgency() const {
     return urgency;
 }
 
-int Task :: getDueDate() {
+sc::time_point<sc::system_clock> Task :: getDueDate() const {
     return dueDate;
 }
 
-bool Task :: isCompleted() {
-    if (completed) { return true; }
-    else { return false; }
+bool Task :: getCompleted() const {
+    return completed;
 }

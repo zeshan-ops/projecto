@@ -8,33 +8,36 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #define TASK_H
 
 #include <string>
+#include <chrono>
+
+namespace sc = std::chrono;
+
+enum urg { L, M, H };
 
 class Task {
     private:
         std::string taskText;
-        int urgency;
-        int dueDate;
+        urg urgency;
+        sc::time_point<sc::system_clock> dueDate;
         bool completed;
 
     public:
         // constructor
-        Task(std::string taskText, int urgency, int dueDate);
+        Task(std::string text);
 
-        // setter functions
-        void editTaskText(const std::string& newTaskText);
-        void editTaskUrgency(const int& newUrgency);
-        void editTaskDueDate(const int& newDueDate);
-        void editCompletion(const bool& completion);
+        // Setters
+        void setText(const std::string newText);
+        void setUrgency(const urg newUrg);
+        void setDueDate(const sc::time_point<sc::system_clock>& newTime);
+        void setCompleted(const bool completion);
 
-        // getter functions
-        std::string getTaskText();
-        int getUrgency();
-        int getDueDate();
+        // Getters
+        std::string getText() const;
+        urg getUrgency() const;
+        sc::time_point<sc::system_clock> getDueDate() const;
+        bool getCompleted() const;
 
-        // check if task is completed
-        bool isCompleted();
-
-        // comparison check
+        // comparison overload
         bool operator==(const Task& a) const {
             return a.taskText == taskText
                 && a.completed == completed
