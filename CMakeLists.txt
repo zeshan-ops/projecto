@@ -5,6 +5,12 @@ project(projecto)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_executable(unitTests
+    tests/mainTests.cpp
+    tests/modelTests/logTests.cpp
+    tests/modelTests/projectTests.cpp
+    tests/modelTests/taskTests.cpp)
+
 add_library(model STATIC
     src/model/task.cpp
     src/model/task.h
@@ -12,3 +18,5 @@ add_library(model STATIC
     src/model/log.h
     src/model/project.cpp
     src/model/project.h)
+
+target_link_libraries(unitTests model)
