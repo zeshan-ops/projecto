@@ -2,6 +2,9 @@
 
 Task :: Task(std::string text) {
     taskText = text;
+    urgency = 0;
+    dueDate = 0;
+    completed = false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

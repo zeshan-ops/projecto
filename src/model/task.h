@@ -12,9 +12,9 @@ BLANK SPACE FOR DOCUMENTATION LATER
 class Task {
     private:
         std::string taskText;
-        int urgency;            // 0, 1, 2 for L, M, H urgencies.
-        int dueDate;
-        bool completed;
+        int urgency;            // 0, 1, 2, 3 for null, L, M, H urgencies.
+        int dueDate;            // 0 is no date.
+        bool completed = false;
 
     public:
         // constructor
