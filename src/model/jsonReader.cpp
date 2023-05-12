@@ -1,7 +1,7 @@
 #include "jsonReader.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool jsonReader :: fileValidater(std::string filename) {
+bool jsonReader :: fileValidater(std::string filename) const {
     std::ifstream inputFile(filename);
     
     // Checking if the file can be opened
@@ -14,24 +14,37 @@ bool jsonReader :: fileValidater(std::string filename) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-json jsonReader :: fileParser(std::string filename) {
+void jsonReader :: fileParser(std::string filename) {
     std::ifstream inputFile(filename);
-
-    return json::parse(inputFile);
+    allProjectData = json::parse(inputFile);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-json jsonReader :: projectSelector(const json& jsonData, const std::string projectName) {
-    for(auto& element: jsonData) {
+bool jsonReader :: projectVerifier(const std::string projectName) const {
+    for(auto& element : allProjectData) {
         if (element["projectName"] == projectName) {
-            return element;
+            return true;
         }
     }
+
+    return false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-std::vector<Task> jsonReader :: taskReader(const json& jsonData) {
-    json dataTaskList = jsonData["Tasks"];
+void jsonReader :: projectSelector(const std::string projectName) {
+    int projectIndex = -1;
+    for(auto& element: allProjectData) {
+        projectIndex += 1;
+        if(element["projectName"] == projectName) {
+            break;
+        }
+    }
+    selectedProject = allProjectData[projectIndex];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+std::vector<Task> jsonReader :: taskReader() const {
+    json dataTaskList = selectedProject["tasks"];
     
     std::vector<Task> taskList;
     
@@ -49,8 +62,8 @@ std::vector<Task> jsonReader :: taskReader(const json& jsonData) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-std::vector<Log> jsonReader :: logReader(const json& jsonData) {
-    json dataLogList = jsonData["Logs"];
+std::vector<Log> jsonReader :: logReader() const {
+    json dataLogList = selectedProject["logs"];
 
     std::vector<Log> logList;
 
@@ -66,20 +79,21 @@ std::vector<Log> jsonReader :: logReader(const json& jsonData) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-std::string jsonReader :: nameReader(const json& jsonData) {
-    return jsonData["projectName"];
+std::string jsonReader :: nameReader() const {
+    return selectedProject["projectName"];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 /* PUBLIC METHOD */
 Project jsonReader :: createProject(std::string filename, const std::string projectName) {
-    json allProjects = fileParser(filename);
-    json projectData = projectSelector(allProjects, projectName);
+    fileParser(filename);
+    projectSelector(projectName);
 
-    Project project(nameReader(projectData));
+    Project project("Initial construction");
 
-    project.setTasks(taskReader(projectData));
-    project.setLogs(logReader(projectData));
+    project.setName(nameReader());
+    project.setTasks(taskReader());
+    project.setLogs(logReader());
 
     return project;
 }
