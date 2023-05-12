@@ -20,6 +20,10 @@ void Project :: deleteTask(int taskID) {
     tasks.erase(tasks.begin()+taskID);
 }
 
+void Project :: setTasks(std::vector<Task> taskList) {
+    tasks = taskList;
+}
+
 /* LOG MANIPULATORS*/
 void Project :: addLog(const Log& log) {
     logs.push_back(log);
@@ -27,6 +31,15 @@ void Project :: addLog(const Log& log) {
 
 void Project :: deleteLog(int logID) {
     logs.erase(logs.begin()+logID);
+}
+
+void Project :: setLogs(std::vector<Log> logList) {
+    logs = logList;
+}
+
+/* PROJECT SETTERS */
+void Project :: setName(std::string newName) {
+    projectName = newName;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
