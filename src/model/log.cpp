@@ -1,7 +1,7 @@
 #include "log.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-Log::Log(std::string text, sc::time_point<sc::system_clock> time) {
+Log::Log(std::string text, int time) {
     logText = text;
     logTime = time;
 }
@@ -12,7 +12,7 @@ void Log::setText(const std::string &newLogText) {
     logText = newLogText;
 }
 
-void Log::setTime(const sc::time_point<sc::system_clock>& newTime) {
+void Log::setTime(const int newTime) {
     logTime = newTime;
 }
 
@@ -22,6 +22,6 @@ std::string Log::getText() const {
     return logText;
 }
 
-sc::time_point<sc::system_clock> Log::getTime() const {
+int Log::getTime() const {
     return logTime;
 }

@@ -8,9 +8,6 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #define TASK_H
 
 #include <string>
-#include <chrono>
-
-namespace sc = std::chrono;
 
 enum urg { L, M, H };
 
@@ -18,7 +15,7 @@ class Task {
     private:
         std::string taskText;
         urg urgency;
-        sc::time_point<sc::system_clock> dueDate;
+        int dueDate;
         bool completed;
 
     public:
@@ -28,13 +25,13 @@ class Task {
         // Setters
         void setText(const std::string newText);
         void setUrgency(const urg newUrg);
-        void setDueDate(const sc::time_point<sc::system_clock>& newTime);
+        void setDueDate(const int newTime);
         void setCompleted(const bool completion);
 
         // Getters
         std::string getText() const;
         urg getUrgency() const;
-        sc::time_point<sc::system_clock> getDueDate() const;
+        int getDueDate() const;
         bool getCompleted() const;
 
         // comparison overload

@@ -14,7 +14,7 @@ void Task :: setUrgency(const urg newUrgency) {
     urgency = newUrgency;
 }
 
-void Task :: setDueDate(const sc::time_point<sc::system_clock>& newTime) {
+void Task :: setDueDate(const int newTime) {
     dueDate = newTime;
 }
 
@@ -32,7 +32,7 @@ urg Task :: getUrgency() const {
     return urgency;
 }
 
-sc::time_point<sc::system_clock> Task :: getDueDate() const {
+int Task :: getDueDate() const {
     return dueDate;
 }
 
