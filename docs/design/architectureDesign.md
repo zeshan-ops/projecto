@@ -25,7 +25,7 @@ The data reading and writing process is coupled, therefore, to the model, but I 
 
 > Note: 
 >
-> The model could have be reconstrued to use json objects directlty using the library, but I decided against this to make a switch to a different data storage format in future easier to do.
+> The model could have been reconstrued to use json objects directlty using the library, but I decided against this to make a switch to a different data storage format in future easier to do.
 
 ## View
 There needs to be the following views in the project:
