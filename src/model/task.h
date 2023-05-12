@@ -9,12 +9,10 @@ BLANK SPACE FOR DOCUMENTATION LATER
 
 #include <string>
 
-enum urg { L, M, H };
-
 class Task {
     private:
         std::string taskText;
-        urg urgency;
+        int urgency;            // 0, 1, 2 for L, M, H urgencies.
         int dueDate;
         bool completed;
 
@@ -24,13 +22,13 @@ class Task {
 
         // Setters
         void setText(const std::string newText);
-        void setUrgency(const urg newUrg);
+        void setUrgency(const int newUrg);
         void setDueDate(const int newTime);
         void setCompleted(const bool completion);
 
         // Getters
         std::string getText() const;
-        urg getUrgency() const;
+        int getUrgency() const;
         int getDueDate() const;
         bool getCompleted() const;
 

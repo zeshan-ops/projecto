@@ -10,7 +10,7 @@ void Task :: setText(const std::string text) {
     taskText = text;
 }
 
-void Task :: setUrgency(const urg newUrgency) {
+void Task :: setUrgency(const int newUrgency) {
     urgency = newUrgency;
 }
 
@@ -28,7 +28,7 @@ std::string Task :: getText() const {
     return taskText;
 }
 
-urg Task :: getUrgency() const {
+int Task :: getUrgency() const {
     return urgency;
 }
 
