@@ -11,7 +11,7 @@ add_executable(unitTests
     tests/modelTests/logTests.cpp
     tests/modelTests/projectTests.cpp
     tests/modelTests/taskTests.cpp
-    tests/modelTests/jsonReaderTests.cpp)
+    tests/modelTests/jsonDataFunctionTests.cpp)
 
 add_library(model STATIC
     src/model/task.cpp
@@ -21,6 +21,8 @@ add_library(model STATIC
     src/model/project.cpp
     src/model/project.h
     src/model/jsonReader.cpp
-    src/model/jsonReader.h)
+    src/model/jsonReader.h
+    src/model/jsonWriter.cpp
+    src/model/jsonWriter.h)
 
 target_link_libraries(unitTests model)
