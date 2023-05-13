@@ -84,8 +84,8 @@ std::string jsonReader :: nameReader() const {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-/* PUBLIC METHOD */
-Project jsonReader :: createProject(std::string filename, const std::string projectName) {
+Project jsonReader :: createProject(std::string filename, 
+                                    const std::string projectName) {
     fileParser(filename);
     projectSelector(projectName);
 
@@ -96,4 +96,9 @@ Project jsonReader :: createProject(std::string filename, const std::string proj
     project.setLogs(logReader());
 
     return project;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+json jsonReader :: returnAllData() const {
+    return allProjectData;
 }

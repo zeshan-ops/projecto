@@ -30,6 +30,8 @@ class jsonReader {
         std::string nameReader() const;
 
         Project createProject(std::string filename, const std::string projectName);
+
+        json returnAllData() const;
 };
 
 #endif
