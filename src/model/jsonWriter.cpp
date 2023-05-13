@@ -9,4 +9,5 @@ void jsonWriter :: writeData(std::string filename) {
     std::ofstream outputFile(filename);
     std::string outPutData = allProjectData.dump(3);
     outputFile << outPutData;
+    outputFile.close();
 }
