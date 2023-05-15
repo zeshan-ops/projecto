@@ -19,6 +19,7 @@
     projecto addTask "<TASK TEXT>" [due:<dueDate>] [urg:<L,M,H>]
     projecto editTask <ID> [text:"<NEW TEXTt>"] [due:<XXXX-XX-XX>] [urg:<L,M,H>]
     projecto deleteTask <ID>
+    projecto complete <ID>
 
     // NOTES
     projecto addLog "<LOG TEXT>"
