@@ -34,9 +34,4 @@ The controller will take user inputs and transform them into model and view comm
 ## Data Storage
 The data will be stored in JSON format with the help of the [Nlohmann JSON](https://github.com/nlohmann/json) library. This library could have been used to construct the model too, but I chose to use a separate implementation in case I changed the data storage method in future.
 
-There are two regular data handling objects:
-1. jsonReader - handles reading the data file
-2. jsonWriter - handles writing to the data file
-
-There is also a third object will handle conversions to and from the models internal format and the json format necessary for storage.
-3. jsonDataInterface
+There is a single simple data handling object `jsonData`. The principle of operation is that this object will load the data from the storage file, this data will be manipulated by the program and then rewritten to the data file using a `writeData()` method.
