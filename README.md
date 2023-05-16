@@ -23,6 +23,8 @@ This application is written in C++ and makes use of the following libraries:
 - [Program flow](docs/design/programFlow.md)
 - [User stories](docs/design/userStories.md)
 
+## License
+This software is distributed under the MIT license. See [license](LICENSE) for details.
 
 
 
