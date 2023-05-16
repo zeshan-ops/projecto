@@ -1,4 +1,4 @@
-# How to use Projecto
+# Project Command List
 
 ## View Commands
 

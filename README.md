@@ -11,11 +11,19 @@ This application is written in C++ and makes use of the following libraries:
 - [Nlohmann JSON](https://github.com/nlohmann/json) - for data storage
 - [Doctest](https://github.com/doctest/doctest) - for unit testing
 
-## Documentation
-- [How to use projecto](docs/usage/howToUseProjecto.md)
-- [Software Architecture Design](docs/design/architectureDesign.md)
-
 ## Installation
+
+## Documentation
+**Usage**:
+- [Command list](docs/usage/projectoCommandList.md)
+- [Examples](docs/usage/examples.md)
+
+**Design**:
+- [Software architecture design](docs/design/architectureDesign.md)
+- [Program flow](docs/design/programFlow.md)
+- [User stories](docs/design/userStories.md)
+
+
 
 
 
