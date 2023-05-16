@@ -23,7 +23,8 @@ class jsonData {
         jsonData(std::ifstream& inputFile);
 
         json getData();
-        json getProject(std::string projectName);
+        json getJSONProject(std::string projectName);
+        Project getProject(std::string projectName);
 
         // EDITING METHODS
         void editProject(const json& projectData, std::string projectName);

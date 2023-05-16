@@ -13,9 +13,38 @@ json jsonData :: getData() {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-json jsonData :: getProject(std::string projectName) {
+json jsonData :: getJSONProject(std::string projectName) {
     return allData[getProjectIndex(projectName)];
 }
+
+////////////////////////////////////////////////////////////////////////////////
+Project jsonData :: getProject(std::string projectName) {
+    json projectData = getJSONProject(projectName);
+    
+    std::vector<Task> taskList;
+    for(auto& task : projectData["tasks"]){
+        Task t(task["text"]);
+        t.setUrgency(task["urgency"]);
+        t.setDueDate(task["dueDate"]);
+        t.setCompleted(task["completed"]);
+        taskList.push_back(t);
+    }
+
+    std::vector<Log> logList;
+    for(auto& log : projectData["logs"]){
+        Log l(log["text"], log["time"]);
+        logList.push_back(l);
+    }
+
+    Project p(projectName);
+
+    p.setTasks(taskList);
+    p.setLogs(logList);
+
+    return p;
+}
+
+
 
 /* EDITING METHODS */
 ////////////////////////////////////////////////////////////////////////////////
