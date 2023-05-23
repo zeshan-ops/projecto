@@ -11,7 +11,7 @@
 - Yellow boxes: controller
 - Blue box: model 
 - Teal boxes: data
-- Blue/teal boxes: model
+- Blue/teal boxes: model + data
 - Green boxes: view
 
 > Note:
@@ -22,10 +22,20 @@
 ## Elaboration
 When projecto is called, there are three common first steps.
 1. Parsing the command line arguments, separating the command name and its modifiers
+    - Identifying the command from `argv[1]` by comparing it to a list of possible commands
+        - If the command has no matches, output error message: command unrecognised
+    - Copying `argv[2+]` into a vector of strings
 2. Initialising the program (setting the focused project and data file path)
+    - Reading the initialisation file and setting the appropriate variable values
 3. Choosing the appropriate command
+    - Passing the command and the parameters to a command chooser which creates the appropriate command object
+    - Command object verifies the parameter syntax
+        - If the paramater syntax is incorrect, output error message
+    - Execute the command.
 
 There are then three groupings of command type, A, B and C. These are grouped because they have similar steps to follow.
+
+
 
 **Group A**:
 The commands in this group are:
@@ -40,7 +50,7 @@ The commands in this group are:
 **Group B**:
 The commands in this group are:
 - Adding a new project
-- Deleting an existing projectxs
+- Deleting an existing project
 - Changing the name of an existing project
 - Viewing all projects overview
 
