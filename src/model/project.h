@@ -26,11 +26,11 @@ class Project {
         void addTask(const Task& task);
         void editTask(int taskID, const Task& task);
         void deleteTask(int taskID);
-        void setTasks(std::vector<Task> taskList);
+        void setTasks(std::vector<Task>& taskList);
 
-        void addLog(const Log& note);
+        void addLog(const Log& log);
         void deleteLog(int logID);
-        void setLogs(std::vector<Log> logList);
+        void setLogs(std::vector<Log>& logList);
 
         void setName(std::string newName);
 

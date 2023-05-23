@@ -20,7 +20,7 @@ void Project :: deleteTask(int taskID) {
     tasks.erase(tasks.begin()+taskID);
 }
 
-void Project :: setTasks(std::vector<Task> taskList) {
+void Project :: setTasks(std::vector<Task>& taskList) {
     tasks = taskList;
 }
 
@@ -33,7 +33,7 @@ void Project :: deleteLog(int logID) {
     logs.erase(logs.begin()+logID);
 }
 
-void Project :: setLogs(std::vector<Log> logList) {
+void Project :: setLogs(std::vector<Log>& logList) {
     logs = logList;
 }
 
