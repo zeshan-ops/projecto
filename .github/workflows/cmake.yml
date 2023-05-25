@@ -19,19 +19,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Install gcovr
+      run: brew install gcovr
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    - name: Build
-      # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+    - name: Build the project
+      run: cmake --build ${{github.workspace}}/build
     
-    - name: Generate coverage reports
-      run: make projecto_coverage ${{github.workspace}}/build
-    
+    - name: Check contents of build directory
+      run: ls ${{github.workspace}}/build
+      
+    - name: Generate code coverage reports
+      run: cd build && make projecto_coverage
+      
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
+      
 
