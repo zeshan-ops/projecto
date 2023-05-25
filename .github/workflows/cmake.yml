@@ -29,14 +29,8 @@ jobs:
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Generate makefiles
-      run: cmake .. ${{github.workspace}}/build
+      run: cmake --build ${{github.workspace}}/build
     
-    - name: Build the project
-      run: make ${{github.workspace}}/build
-    
-    - name: Generate coverage reports
-      run: make projecto_coverage ${{github.workspace}}/build
-    
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v3
+    - name: Check contents of build directory
+      run: ls ${{github.workspace}}/build
 
