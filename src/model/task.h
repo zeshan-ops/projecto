@@ -14,7 +14,7 @@ class Task {
         std::string taskText;
         int urgency;            // 0, 1, 2, 3 for null, L, M, H urgencies.
         int dueDate;            // 0 is no date.
-        bool completed = false;
+        bool completed;
 
     public:
         // constructor

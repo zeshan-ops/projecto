@@ -1,11 +1,6 @@
 #include "task.h"
 
-Task :: Task(std::string text) {
-    taskText = text;
-    urgency = 0;
-    dueDate = 0;
-    completed = false;
-}
+Task :: Task(std::string text) : taskText(text), urgency(0), dueDate(0), completed(false) {};
 
 ////////////////////////////////////////////////////////////////////////////////
 /* SETTERS */
