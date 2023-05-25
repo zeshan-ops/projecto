@@ -34,12 +34,10 @@ jobs:
     - name: Check contents of build directory
       run: ls ${{github.workspace}}/build
       
-    - name: Run unit tests
-      run: cd build && ./unitTests
-      
-    - name: Generatre code coverage reports
+    - name: Generate code coverage reports
       run: cd build && make projecto_coverage
       
-    - name: Check contents of build directory
-      run: cd build && ls
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      
 
