@@ -20,7 +20,13 @@ add_library(model STATIC
     src/model/log.h
     src/model/project.cpp
     src/model/project.h
-    src/model/jsonData.cpp
-    src/model/jsonData.h)
+    src/model/jsonDataInterface.cpp
+    src/model/jsonDataInterface.h)
 
 target_link_libraries(unitTests model)
+include(CodeCoverage.cmake)
+append_coverage_compiler_flags()
+setup_target_for_coverage_gcovr_html(
+    NAME projecto_coverage 
+    EXECUTABLE unitTests
+    EXCLUDE "${PROJECT_SOURCE_DIR}/src/model/json.hpp" "${PROJECT_SOURCE_DIR}/tests/*")
