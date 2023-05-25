@@ -1,13 +1,24 @@
 /*
 
-Blank space for documentation later
+BLANK SPACE FOR DOCUMENTATION LATER
 
 */
 
-#include <iostream>
-#include <iomanip>
-#include "../model/project.h"
-#include "ansiMacros.h"
-#include "viewUtilities.h"
+#ifndef PROJECT_OVERVIEW_H
+#define PROEJCT_OVERVIEW_H
 
-void showProjectView(const Project& project);
+#include <vector>
+#include <string>
+#include <iostream>
+#include "../model/task.h"
+#include "../model/log.h"
+#include "ansiMacros.h"
+
+
+namespace projectView {
+    void renderTaskTable(const std::vector<Task>& taskList);
+    void renderLastAction(const Log lastAction);
+    void renderView(const std::vector<Task>& taskList, const Log lastAction);
+}
+
+#endif

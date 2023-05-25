@@ -13,17 +13,11 @@
 ## Manipulation commands
 
 ```
-    projecto setProject "<PROJECT NAME>"   // sets the focused project
-
     // TASKS
     projecto addTask "<TASK TEXT>" [due:<dueDate>] [urg:<L,M,H>]
     projecto editTask <ID> [text:"<NEW TEXT>"] [due:<YYYY-MM-DD>] [urg:<L,M,H>]
     projecto deleteTask <ID>
     projecto complete <ID>
-
-    // NOTES
-    projecto addLog "<LOG TEXT>"
-    projecto deleteLog <ID>
 
     // LOG
     projecto addLog "<LOG TEXT>"
@@ -33,6 +27,8 @@
     projecto setName "<NEW PROJECT NAME>"
     projecto deleteProject <id>
     projecto newProject "<NEW PROJECT NAME>"
+    projecto setProject "<PROJECT NAME>"
+    projecto setDataPath "<FILEPATH>"
 ```
 
 ## Other commands

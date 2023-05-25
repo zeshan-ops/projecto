@@ -9,6 +9,10 @@ Utility functions for outputting to the terminal
 
 #include<string>
 
-std::string truncateText(std::string text, int truncLength);
+namespace viewUtil {
+    // text truncation, adds an ellipsis to end of truncated text
+    std::string truncateText(std::string text, int truncLength);
+
+};
 
 #endif

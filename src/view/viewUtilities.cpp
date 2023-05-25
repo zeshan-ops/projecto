@@ -1,6 +1,6 @@
 #include "viewUtilities.h"
 
-std::string truncateText(std::string text, int truncLength) {
+std::string viewUtil :: truncateText(std::string text, int truncLength) {
     std::string truncatedString = text.substr(0,truncLength-3);
     if(text.length() <= truncLength) {
         return text;
