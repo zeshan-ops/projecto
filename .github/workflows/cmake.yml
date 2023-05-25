@@ -35,7 +35,7 @@ jobs:
       run: ls ${{github.workspace}}/build
       
     - name: Run unit tests
-      run: unitTests ${{github.workspace}}/build
+      run: ./unitTests ${{github.workspace}}/build
       
     - name: Check contents of build directory
       run: ls ${{github.workspace}}/build
