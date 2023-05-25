@@ -32,7 +32,7 @@ jobs:
       run: cmake .. ${{github.workspace}}/build
     
     - name: Build the project
-      run: make
+      run: make ${{github.workspace}}/build
     
     - name: Generate coverage reports
       run: make projecto_coverage ${{github.workspace}}/build
