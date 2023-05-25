@@ -35,8 +35,11 @@ jobs:
       run: ls ${{github.workspace}}/build
       
     - name: Run unit tests
-      run: ./unitTests ${{github.workspace}}/build
+      run: cd build && ./unitTests
+      
+    - name: Generatre code coverage reports
+      run: cd build && make projecto_coverage
       
     - name: Check contents of build directory
-      run: ls ${{github.workspace}}/build
+      run: cd build && ls
 
