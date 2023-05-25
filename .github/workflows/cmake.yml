@@ -35,7 +35,7 @@ jobs:
       run: ls ${{github.workspace}}/build
       
     - name: Generate coverage reports
-      run: make projecto_coverage $${github.workspace}}/build
+      run: make projecto_coverage ${{github.workspace}}/build
       
     - name: Check contents of build directory
       run: ls ${{github.workspace}}/build
