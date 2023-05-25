@@ -28,9 +28,15 @@ jobs:
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    - name: Generate makefiles
+    - name: Build the project
       run: cmake --build ${{github.workspace}}/build
     
+    - name: Check contents of build directory
+      run: ls ${{github.workspace}}/build
+      
+    - name: Generate coverage reports
+      run: make projecto_coverage $${github.workspace}}/build
+      
     - name: Check contents of build directory
       run: ls ${{github.workspace}}/build
 
