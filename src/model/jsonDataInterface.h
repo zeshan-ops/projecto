@@ -10,6 +10,7 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 #include "json.hpp"
 #include "project.h"
 
@@ -27,8 +28,9 @@ class jsonDataInterface {
         Project getProject(std::string projectName);
 
         // EDITING METHODS
-        void editProject(const json& projectData, std::string projectName);
-        void addNewProject(const json& projectData);
+        void editProjectJSON(const json& projectData, std::string projectName);
+        void editProject(const Project& projectData, std::string projectName);
+        void addNewProjectJSON(const json& projectData);
         void deleteProject(std::string projectName);
 
         // WRITING METHODS

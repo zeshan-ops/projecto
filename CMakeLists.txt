@@ -11,7 +11,7 @@ add_executable(unitTests
     tests/modelTests/logTests.cpp
     tests/modelTests/projectTests.cpp
     tests/modelTests/taskTests.cpp
-    tests/modelTests/jsonDataTests.cpp)
+    tests/modelTests/jsonDataInterfaceTests.cpp)
 
 add_library(model STATIC
     src/model/task.cpp

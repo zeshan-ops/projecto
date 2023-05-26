@@ -49,7 +49,7 @@ To satisfy the [user stories](#user-stories) above, the following features are p
     - A view that shows all the log entries of a single project. All log entires, truncated and with their datetime.
     - Messages printed to terminal whenever a command is executed, e.g. `Added task`.
 - **Other**:
-    - Ability to change the *focused project*. There should be a command that allows the user to change which project they want to view and edit. The change should be persistent so that Projecto always loads the same project it did on its previous call unless commanded otherwise by the user. **(I)**
+    - Ability to change the *focused project*. There should be a command that allows the user to change which project they want to view and edit. The change should be persistent so that Projecto always loads the same project it did on its previous call unless commanded otherwise by the user.
 
 ## Architecture
 
