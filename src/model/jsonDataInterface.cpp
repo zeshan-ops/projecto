@@ -2,8 +2,8 @@
 
 /* READING METHODS */
 ////////////////////////////////////////////////////////////////////////////////
-jsonDataInterface :: jsonDataInterface(std::ifstream& inputFile) {
-    allData = json::parse(inputFile);
+jsonDataInterface :: jsonDataInterface(std::ifstream& inputFile) : 
+    allData(json::parse(inputFile)) {
     inputFile.close();
 }
 
