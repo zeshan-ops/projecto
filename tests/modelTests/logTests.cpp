@@ -11,14 +11,15 @@ TEST_SUITE("Log Class Tests") {
 
     TEST_CASE("Comparison operator tests") {
         Log logA("Log A", 0);
-        Log logB("Log B", 0);
+        Log logB("Log B", 1);
         
         SUBCASE("Checking unequal logs") {
             CHECK(logA != logB);
         }
 
         SUBCASE("Checking equal tasks") {
-            logB.setText("Log A");
+            logB.setText(logA.getText());
+            logB.setTime(logA.getTime());
             CHECK(logA == logB);
         }
     }

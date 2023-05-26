@@ -5,7 +5,7 @@ Log::Log(std::string text, int time) : logText(text), logTime(time) {};
 
 ///////////////////////////////////////////////////////////////////////////////
 /* SETTERS */
-void Log::setText(const std::string &newLogText) {
+void Log::setText(const std::string& newLogText) {
     logText = newLogText;
 }
 
