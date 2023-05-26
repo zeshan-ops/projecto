@@ -14,6 +14,12 @@ TEST_SUITE("Task Class Tests") {
     TEST_CASE("Comparison operator tests") {
         Task taskA("Test Task A");
         Task taskB("Test Task B");
+
+        taskA.setDueDate(0);
+        taskA.setUrgency(2);
+
+        taskB.setDueDate(0);
+        taskB.setUrgency(2);
         
         SUBCASE("Checking unequal tasks") {
             CHECK(taskA != taskB);

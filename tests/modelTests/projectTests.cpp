@@ -116,12 +116,20 @@ TEST_SUITE("Project Class Tests") {
         Project project1("Test Project 1");
         Project project2("Test Project 2");
 
+        Task task1("Task 1");
+        project1.addTask(task1);
+
+        Log log1("Log 1", 0);
+        project1.addLog(log1);
+
         SUBCASE("Checking unequal projects") {
             CHECK(project1 != project2);
         }
 
         SUBCASE("Checking equal projects") {
             project2.setName("Test Project 1");
+            project2.addLog(log1);
+            project2.addTask(task1);
             CHECK(project1 == project2);
         }
     }
