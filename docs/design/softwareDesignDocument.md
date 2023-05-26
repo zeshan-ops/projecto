@@ -3,21 +3,17 @@ This document outlines the design of Projecto, a simple command line interface p
 
 ## Table of contents
 ---
-- [Introduction](#introduction)
 - [Description](#description)
     - [User stories](#user-stories)
-    - [Planned feature list](#planned-feature-list)
+    - [Features and functionality](#features-and-functionality)
 - [Architecture and design](#architecture-and-design)
     - [Overview](#overview)
-    - [Model + Data](#model-+-data)
-    - [View](#view)
-    - [Controller](#controller)
-- [Testing and quality assurance](#testing-and-quality-assurance)
+    - [Implementation Details](#implementation-details)
+- [Testing](#testing)
 - [Deployment and maintenance](#deployment-and-maintenance)
 ---
 
-## Project Overview
-### Description
+## Description
 Projecto was born out of a desire to easily manage hobby coding projects directly from VS code without switching to another app. The ease of use of github from the terminal prompted me to create this application with a command line interface. This project also serves as way for me to learn more about the entire software design process.
 
 There are two key aspects of project management that I wanted Projecto to be able to handle: task management and keeping a log. Task management is self-explanatory, and I decided that a log was needed because it helps to keep track of progress and remind me of the last action I took on a project, making it easier to be productive on projects that take a while to complete.
@@ -31,7 +27,7 @@ The target audience are users that want a simple way to manage hobby coding proj
 - As a user, I want the terminal output to be aesthetically pleasing so that I enjoy using the tool.
 - As a developer, I want to have a robust and flexible codebase so that I can easily extend the feature of Projecto in the future.
 
-## Features and Functionality
+### Features and Functionality
 To satisfy the [user stories](#user-stories) above, the following features are planned to be implemented for the initial relsease.
 - **Tasks**:
     - Each task should have text describing it, optionally a low, medium or high urgency and optionally a due date.
@@ -51,10 +47,10 @@ To satisfy the [user stories](#user-stories) above, the following features are p
 - **Other**:
     - Ability to change the *focused project*. There should be a command that allows the user to change which project they want to view and edit. The change should be persistent so that Projecto always loads the same project it did on its previous call unless commanded otherwise by the user.
 
-## Architecture
+## Architecture and design
 
 ### Overview
-Projecto is based on the MVC architectural design pattern. The *flavour* of MVC followed can be seen in the diagram below. The controller deals with user commands and then communicates with both the view and model appropriately. This decouples the view entirely from the model, making the system more robust and flexible. The data storage will be included in the model part of the codebase.
+Projecto is based on the MVC architectural design pattern. The *flavour* of MVC followed can be seen in the diagram below. The controller deals with user commands and then communicates with both the view and model appropriately. This decouples the view entirely from the model, making the system more robust and flexible. The data file handling will be included in the model part of the codebase.
 
 <div align=center>
 
@@ -64,14 +60,9 @@ Projecto is based on the MVC architectural design pattern. The *flavour* of MVC 
 
 </div>
 
+### Implementation Details
 
-
-
-## Command Line Interface (CLI)
-
-## Implementation Details
-
-### Model + Data
+#### Model + Data
 A project needs to be able to have tasks and log entries (with the last log entry functioning as a **"last action"**). The model will therefore have project objects that act as containers of tasks and log entries.
 
 To reduce the coupling of the project object to its aggregated objects, when editing one of them that corresponds to that project, it will be done by replacing the entire object. This way the project object does not care what the objects are, only that they exist.
@@ -90,7 +81,7 @@ There is a single simple data handling object `jsonDataInterface`. The principle
 
 </div>
 
-### View
+#### View
 There needs to be the following views in the project:
 
 - All project overview: list of project names + the number of tasks for each project
@@ -111,7 +102,7 @@ The view will be restricted to a max width of 80 characters per line (to match t
 
 </div>
 
-### Controller
+#### Controller
 The controller will take user inputs and transform them into model and view commands. Parsing and verification of user inputs will be done separately.
 
 The commands of Projecto can be split into three categories which follow similar steps:
@@ -134,6 +125,8 @@ The commands of Projecto can be split into three categories which follow similar
 
 </div>
 
-## Usage and Examples
+## Testing
 
-## Roadmap and Future Enhancements
+
+
+## Deployment and maintenance

@@ -35,9 +35,6 @@ class jsonDataInterface {
 
         // WRITING METHODS
         void writeData(std::string filename);
-
-        // UTILITY FUNCTION
-        int getProjectIndex(std::string projectName);
 };
 
 

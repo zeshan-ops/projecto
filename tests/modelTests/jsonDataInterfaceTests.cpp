@@ -206,23 +206,6 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     }
 
     ////////////////////////////////////////////////////////////////////////////////
-    TEST_CASE("Utility function tests") {
-        std::ifstream inputFile("testFile1.json");
-        jsonDataInterface testDataInterface(inputFile);
-
-        SUBCASE("Return correct project index") {
-            int index = testDataInterface.getProjectIndex("Test Project 1");
-            CHECK(index == 0);
-        }
-
-        SUBCASE("Return 100 for missing object") {
-            int index = testDataInterface.getProjectIndex("random nonexisting project");
-            CHECK(index == 100);
-        }
-    }
-
-
-    ////////////////////////////////////////////////////////////////////////////////
     /* This final test case just deletes all test files created during this test
     suite. */
     TEST_CASE("Delete test file") {

@@ -14,7 +14,12 @@ json jsonDataInterface :: getData() {
 
 ////////////////////////////////////////////////////////////////////////////////
 json jsonDataInterface :: getJSONProject(std::string projectName) {
-    return allData[getProjectIndex(projectName)];
+    auto jsonProject = std::find_if(allData.begin(), allData.end(), [projectName](const json& x) {
+        auto it = x.find("projectName");
+        return it != x.end() and it.value() == projectName;
+    });
+
+    return *jsonProject;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,8 +60,10 @@ Project jsonDataInterface :: getProject(std::string projectName) {
 /* EDITING METHODS */
 ////////////////////////////////////////////////////////////////////////////////
 void jsonDataInterface :: editProjectJSON(const json& projectData, std::string projectName) {
-    int index = getProjectIndex(projectName);
-    allData[index] = projectData;
+    std::replace_if(allData.begin(), allData.end(), [projectName](const json& x) {
+        auto it = x.find("projectName");
+        return it != x.end() and it.value() == projectName;
+    }, projectData);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -82,8 +89,7 @@ void jsonDataInterface :: editProject(const Project& projectData, std::string pr
         ++index;
     }
 
-    index = getProjectIndex(projectName);
-    allData[index] = newData;
+    editProjectJSON(newData, projectName);
 }
 
 
@@ -94,8 +100,10 @@ void jsonDataInterface :: addNewProjectJSON(const json& projectData) {
 
 ////////////////////////////////////////////////////////////////////////////////
 void jsonDataInterface :: deleteProject(std::string projectName) {
-    int index = getProjectIndex(projectName);
-    allData.erase(allData.begin() + index);
+    allData.erase(std::remove_if(allData.begin(),allData.end(), [projectName](const json& x) {
+        auto it = x.find("projectName");
+        return it != x.end() and it.value() == projectName;
+    }));
 }
 
 /* WRITING METHODS */
@@ -106,16 +114,3 @@ void jsonDataInterface :: writeData(std::string filename) {
     outputFile << outPutData;
     outputFile.close();
 }
-
-/* UTILITY FUNCTION */
-////////////////////////////////////////////////////////////////////////////////
-int jsonDataInterface :: getProjectIndex(std::string projectName) {
-    for(int i = 0; i < allData.size(); i++) {
-        if(allData[i]["projectName"] == projectName) {
-            return i;
-        }
-    }
-    return 100;
-}
-
-
