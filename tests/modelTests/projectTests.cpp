@@ -122,7 +122,46 @@ TEST_SUITE("Project Class Tests") {
         Log log1("Log 1", 0);
         project1.addLog(log1);
 
-        SUBCASE("Checking unequal projects") {
+        SUBCASE("Checking unequal projects, all fields different") {
+            CHECK(project1 != project2);
+        }
+
+        SUBCASE("Checking different project names") {
+            project2.addLog(log1);
+            project2.addTask(task1);
+
+            CHECK(project1 != project2);
+        }
+
+        SUBCASE("Checking different tasks") {
+            project2.addLog(log1);
+            project2.setName("Test Project 1");
+
+            CHECK(project1 != project2);
+        }
+
+        SUBCASE("Checking different logs") {
+            project2.addTask(task1);
+            project2.setName("Test Project 1");
+
+            CHECK(project1 != project2);
+        }
+
+        SUBCASE("Checking different tasks and logs") {
+            project2.setName("Test Project 1");
+
+            CHECK(project1 != project2);
+        }
+
+        SUBCASE("Checking different tasks and name") {
+            project2.addLog(log1);
+
+            CHECK(project1 != project2);
+        }
+
+        SUBCASE("Checking different logs and name") {
+            project2.addTask(task1);
+
             CHECK(project1 != project2);
         }
 
