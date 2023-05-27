@@ -448,7 +448,7 @@ function(setup_target_for_coverage_gcovr_xml)
     # Running gcovr
     set(GCOVR_XML_CMD
         ${GCOVR_PATH} --xml ${Coverage_NAME}.xml -r ${BASEDIR} ${GCOVR_ADDITIONAL_ARGS}
-        ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR}
+        ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR} --exclude-throw-branches
     )
 
     if(CODE_COVERAGE_VERBOSE)
