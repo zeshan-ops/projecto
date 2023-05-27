@@ -71,7 +71,7 @@ void jsonDataInterface :: editProject(const Project& projectData, std::string pr
     json newData;
     newData["projectName"] = projectData.getName();
     
-    int index = 0;
+    unsigned int index = 0;
     
     for(auto& task : projectData.getTasks()) {
         newData["tasks"][index]["text"] = task.getText();

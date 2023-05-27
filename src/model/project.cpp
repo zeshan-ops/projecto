@@ -10,11 +10,11 @@ void Project :: addTask(const Task& task) {
     tasks.push_back(task);
 }
 
-void Project :: editTask(int taskID, const Task& task) {
+void Project :: editTask(unsigned int taskID, const Task& task) {
     tasks[taskID] = task;
 }
 
-void Project :: deleteTask(int taskID) {
+void Project :: deleteTask(unsigned int taskID) {
     tasks.erase(tasks.begin()+taskID);
 }
 
@@ -27,7 +27,7 @@ void Project :: addLog(const Log& log) {
     logs.push_back(log);
 }
 
-void Project :: deleteLog(int logID) {
+void Project :: deleteLog(unsigned int logID) {
     logs.erase(logs.begin()+logID);
 }
 
@@ -46,7 +46,7 @@ std::vector<Task> Project :: getTasks() const {
     return tasks;
 }
 
-Task Project :: getTask(int taskID) const {
+Task Project :: getTask(unsigned int taskID) const {
     return tasks[taskID];
 }
 
@@ -55,7 +55,7 @@ std::vector<Log> Project :: getLogs() const {
     return logs;
 }
 
-Log Project :: getLog(int logID) const {
+Log Project :: getLog(unsigned int logID) const {
     return logs[logID];
 }
 

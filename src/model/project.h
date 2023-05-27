@@ -24,22 +24,22 @@ class Project {
 
         // data manipulation methods
         void addTask(const Task& task);
-        void editTask(int taskID, const Task& task);
-        void deleteTask(int taskID);
+        void editTask(unsigned int taskID, const Task& task);
+        void deleteTask(unsigned int taskID);
         void setTasks(std::vector<Task>& taskList);
 
         void addLog(const Log& log);
-        void deleteLog(int logID);
+        void deleteLog(unsigned int logID);
         void setLogs(std::vector<Log>& logList);
 
         void setName(std::string newName);
 
         // getter methods
         std::vector<Task> getTasks() const;
-        Task getTask(int taskID) const;
+        Task getTask(unsigned int taskID) const;
 
         std::vector<Log> getLogs() const;
-        Log getLog(int logID) const;
+        Log getLog(unsigned int logID) const;
 
         std::string getName() const;
 

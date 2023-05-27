@@ -11,9 +11,7 @@ add_executable(unitTests
     tests/modelTests/logTests.cpp
     tests/modelTests/projectTests.cpp
     tests/modelTests/taskTests.cpp
-    tests/modelTests/jsonDataInterfaceTests.cpp)
-
-add_library(model STATIC
+    tests/modelTests/jsonDataInterfaceTests.cpp
     src/model/task.cpp
     src/model/task.h
     src/model/log.cpp
@@ -23,7 +21,8 @@ add_library(model STATIC
     src/model/jsonDataInterface.cpp
     src/model/jsonDataInterface.h)
 
-target_link_libraries(unitTests model)
+target_compile_options(unitTests PUBLIC -Wall -Wextra -Wpedantic -Wsign-conversion)
+
 include(CodeCoverage.cmake)
 append_coverage_compiler_flags()
 setup_target_for_coverage_gcovr_xml(
