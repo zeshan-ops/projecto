@@ -21,7 +21,7 @@ add_executable(unitTests
     src/model/jsonDataInterface.cpp
     src/model/jsonDataInterface.h)
 
-target_compile_options(unitTests PUBLIC -Wall -Wextra -Wpedantic -Wsign-conversion)
+target_compile_options(unitTests PUBLIC -W -Wall -Wextra -Wpedantic -Wsign-conversion)
 
 include(CodeCoverage.cmake)
 append_coverage_compiler_flags()
