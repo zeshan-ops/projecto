@@ -37,8 +37,10 @@
     projecto -h                     // shows help screen
     projecto -v                     // shows version number
 ```
+---
+> ## Key
+>Words unenclosed by angular or square brackets are necessary for their commands. Words enclosed in angular brackets are necessary options the user must specify. Square bracket enclosures indicate optional arguments. Speech marks must be used where they appear.
+>
+>For a task, due date must be in the format XXXX-XX-XX, and the urgency must be one of L, M or H.
 
-## Key
-Words unenclosed by angular or square brackets are necessary for their commands. Words enclosed in angular brackets are necessary options the user must specify. Square bracket enclosures indicate optional arguments. Speech marks must be used where they appear.
-
-For a task, due date must be in the format XXXX-XX-XX, and the urgency must be one of L, M or H.
+---

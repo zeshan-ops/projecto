@@ -63,15 +63,22 @@ Projecto is based on the MVC architectural design pattern. The *flavour* of MVC 
 ### Implementation Details
 
 #### Model + Data
-A project needs to be able to have tasks and log entries (with the last log entry functioning as a **"last action"**). The model will therefore have project objects that act as containers of tasks and log entries.
+There are four key objects in the model + data part of the codebase:
 
-To reduce the coupling of the project object to its aggregated objects, when editing one of them that corresponds to that project, it will be done by replacing the entire object. This way the project object does not care what the objects are, only that they exist.
+1. `Project`
+2. `Task`
+3. `Log`
+4. `jsonDataInterface`
 
-Communication with the project object is therefore based entirely around adding, deleting, replacing or returning the tasks and log entries it stores. To get information about the specific aggregated objects, the objects own methods (getters) will be used.
+The `Project` object is an aggregration of `Task` and `Log` objects, essentially functioning as a container for them. Vectors will be used to store the tasks and log entries, making adding, deleting and editing them easy.
 
-The data will be stored in JSON format with the help of the [Nlohmann JSON](https://github.com/nlohmann/json) library. This library could have been used to construct the model too, but I chose to use a separate implementation in case I changed the data storage method in future.
+When editing a task that belogns to a project, the entire `Task` object will be replaced by a new one inside the `Project` object. This means that the `Project` object does not need to access methods from the `Task` class, reducing coupling.
 
-There is a single simple data handling object `jsonDataInterface`. The principle of operation is that this object will load the data from the storage file, this data will be manipulated by the program and then rewritten to the data file using a `writeData()` method. This class is strongly coupled to the `Project` class as it can generate `Project` objects from JSON data. Changes to the `Project` class will necessarily require changes to this method in `jsonDataInterface`.
+
+The data will be stored in JSON format with the help of the [Nlohmann JSON](https://github.com/nlohmann/json) library. This library could have been used to construct the model too, but I chose to use a separate implementation in case I changed the data storage method in future. This will be handled by the `jsonDataInterface` object.
+
+The `jsonDataInterface` object is the most complex object in the model. It will act as a container of the application's data when the program runs: reading the data upon initialisation and copying it into a member variable, editing the copied data, and then rewriting it back to the data file. This object will also be able to convert a `Project` object into JSON format.
+
 
 <div align=center>
 
@@ -82,7 +89,7 @@ There is a single simple data handling object `jsonDataInterface`. The principle
 </div>
 
 #### View
-There needs to be the following views in the project:
+There must be the following views available in the terminal:
 
 - All project overview: list of project names + the number of tasks for each project
 - Individual project overview: list of project tasks and the last action of the project (the last log entry)
@@ -94,6 +101,9 @@ There needs to be the following views in the project:
 
 The view will be restricted to a max width of 80 characters per line (to match the 80 character/line code readability guide). ANSI sequences will be used for text formatting - this restricts the program to working only on terminals that support these sequences.
 
+
+Each unique view will have its own object which has a single public render function. 
+
 <div align=center>
 
 <img src="../../assets/projectoViewClassDiagram.png" width = 600>
@@ -102,31 +112,51 @@ The view will be restricted to a max width of 80 characters per line (to match t
 
 </div>
 
+
+
 #### Controller
-The controller will take user inputs and transform them into model and view commands. Parsing and verification of user inputs will be done separately.
+The controller is responsible for taking user input, parsing it, verifying it and then communicating with the model + data and view to perform the appropriate actions.
 
 The commands of Projecto can be split into three categories which follow similar steps:
 
+**Group A**:
+The commands in this group are:
+- Adding, editing, completing or deleting a task
+- Adding or deleting a log entry
+- Viewing project overview
+- Viewing all project tasks
+- Viewing all project logs
+- Viewing individual project task
+- Viewing individual project log
+
+**Group B**:
+The commands in this group are:
+- Adding a new project
+- Deleting an existing project
+- Changing the name of an existing project
+- Viewing all projects overview
+
+**Group C**:
+The commands in this group are:
+- Changing the data file storage path
+- Changing the focused project
+
+This program flow diagram elucidates how the different parts of the system are envisioned to work together:
+
 <div align=center>
 
+<img src="../../assets/projectoFlowDiagram.png" width = 600> 
 
-
-<img src="../../assets/projectoCmdAClassDiagram.png" width = 600>
-
-***(Group A Commands Class Diagram)***
-
-<img src="../../assets/projectoCmdBClassDiagram.png" width = 600>
-
-***(Group B Commands Class Diagram)***
-
-<img src="../../assets/projectoCmdCClassDiagram.png" height = 400>
-
-***(Group C Commands Class Diagram)***
+***(Program flow diagram)***
 
 </div>
 
 ## Testing
+Projecto will be unit-tested and integration tested. The [Doctest](https://github.com/doctest/doctest) header-only library will be used for testing. The development process will be similar to TDD for Projecto without rigidly sticking to the requirement of writing test cases before code. I have found that sometimes a first draft of a unit of code is useful in elucidating the syntax the code will use and its necessary test cases.
 
-
+Code coverage will also be measured using gcov.
 
 ## Deployment and maintenance
+Projecto will make use of continuous integration (CI) during development and after initial release. Github actions will be used to implement the CI.
+
+After the initial release, semantic versioning will be used for the application and a roadmap of future features will be created.
