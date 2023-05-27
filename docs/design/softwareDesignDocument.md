@@ -101,8 +101,7 @@ There must be the following views available in the terminal:
 
 The view will be restricted to a max width of 80 characters per line (to match the 80 character/line code readability guide). ANSI sequences will be used for text formatting - this restricts the program to working only on terminals that support these sequences.
 
-
-Each unique view will have its own object which has a single public render function. 
+Each unique view will have its own object which has a single public render function. These view objects will have no knowledge of the model at all. They will take vector, string, int etc inputs. This is to decouple them entirely from the model which makes the code more involved but improves robustness and flexibility.
 
 <div align=center>
 
