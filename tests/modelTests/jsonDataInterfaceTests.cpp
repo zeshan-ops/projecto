@@ -208,9 +208,11 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     ////////////////////////////////////////////////////////////////////////////////
     /* This final test case just deletes all test files created during this test
     suite. */
-    TEST_CASE("Delete test file") {
+    TEST_CASE("Delete test files") {
         int deleteFile1 = std::remove("testFile1.json");
+        int deleteFile2 = std::remove("writingTest.json");
 
         CHECK(deleteFile1 == 0);
+        CHECK(deleteFile2 == 0);
     }
 }
