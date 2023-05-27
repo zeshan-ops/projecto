@@ -15,18 +15,82 @@ TEST_SUITE("Task Class Tests") {
         Task taskA("Test Task A");
         Task taskB("Test Task B");
 
-        taskA.setDueDate(0);
-        taskA.setUrgency(2);
-
-        taskB.setDueDate(0);
-        taskB.setUrgency(2);
+        taskA.setUrgency(0); taskB.setUrgency(2);
+        taskA.setDueDate(1); taskB.setDueDate(2);
+        taskA.setCompleted(true); taskB.setCompleted(false);
         
-        SUBCASE("Checking unequal tasks") {
+        CHECK(taskA != taskB);
+
+        SUBCASE("Same text") {
+            taskA.setText(taskB.getText());
+            CHECK(taskA != taskB);
+
+            SUBCASE("Same text and completed") {
+                taskA.setCompleted(taskB.getCompleted());
+                CHECK(taskA != taskB);
+
+                SUBCASE("Same text and completed and due") {
+                    taskA.setDueDate(taskB.getDueDate());
+                    CHECK(taskA != taskB);
+                }
+            }
+
+            SUBCASE("Same text and due") {
+                taskA.setDueDate(taskB.getDueDate());
+                CHECK(taskA != taskB);
+
+                SUBCASE("Same text and due and urg") {
+                    taskA.setUrgency(taskB.getUrgency());
+                    CHECK(taskA != taskB);
+                }
+            }
+
+            SUBCASE("Same text and urg") {
+                taskA.setUrgency(taskB.getUrgency());
+                CHECK(taskA != taskB);
+
+                SUBCASE("Same text and urg and completed") {
+                    taskA.setCompleted(taskB.getCompleted());
+                    CHECK(taskA != taskB);
+                }
+            }
+        }
+
+        SUBCASE("Same completed") {
+            taskA.setCompleted(taskB.getCompleted());
             CHECK(taskA != taskB);
         }
 
-        SUBCASE("Checking equal tasks") {
-            taskB.setText("Test Task A");
+        SUBCASE("Same due") {
+            taskA.setDueDate(taskB.getDueDate());
+            CHECK(taskA != taskB);
+
+            SUBCASE("Same due and comp") {
+                taskA.setCompleted(taskB.getCompleted());
+                CHECK(taskA != taskB);
+            }
+        }
+
+        SUBCASE("Same urg") {
+            taskA.setUrgency(taskB.getUrgency());
+            CHECK(taskA != taskB);
+
+            SUBCASE("Same urg and due") {
+                taskA.setDueDate(taskB.getDueDate());
+                CHECK(taskA != taskB);
+
+                SUBCASE("Same urg and due and comp") {
+                    taskA.setCompleted(taskB.getCompleted());
+                    CHECK(taskA != taskB);
+                }
+            }
+        }
+
+        SUBCASE("Same text, comp, due and urg") {
+            taskA.setText(taskB.getText());
+            taskA.setCompleted(taskB.getCompleted());
+            taskA.setDueDate(taskB.getDueDate());
+            taskA.setUrgency(taskB.getUrgency());
             CHECK(taskA == taskB);
         }
     }
