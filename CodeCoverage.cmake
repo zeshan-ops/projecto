@@ -137,7 +137,7 @@
 
 include(CMakeParseArguments)
 
-option(CODE_COVERAGE_VERBOSE "Verbose information" FALSE)
+option(CODE_COVERAGE_VERBOSE "Verbose information" TRUE)
 
 # Check prereqs
 find_program( GCOV_PATH gcov )
@@ -447,8 +447,8 @@ function(setup_target_for_coverage_gcovr_xml)
     )
     # Running gcovr
     set(GCOVR_XML_CMD
-        ${GCOVR_PATH} --xml ${Coverage_NAME}.xml -r ${BASEDIR} ${GCOVR_ADDITIONAL_ARGS}
-        ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR} --exclude-throw-branches
+        ${GCOVR_PATH} --xml ${Coverage_NAME}.xml -r ${BASEDIR} --exclude-throw-branches --exclude-unreachable-branches
+        ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR}
     )
 
     if(CODE_COVERAGE_VERBOSE)
@@ -543,7 +543,7 @@ function(setup_target_for_coverage_gcovr_html)
     )
     # Running gcovr
     set(GCOVR_HTML_CMD
-        ${GCOVR_PATH} --html ${Coverage_NAME}/index.html --html-details -r ${BASEDIR} ${GCOVR_ADDITIONAL_ARGS}
+        ${GCOVR_PATH} --html ${Coverage_NAME}/index.html --html-details -r ${BASEDIR} --exclude-throw-branches --exclude-unreachable-branches
         ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR}
     )
 
