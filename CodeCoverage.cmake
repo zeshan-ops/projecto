@@ -412,7 +412,7 @@ function(setup_target_for_coverage_gcovr_xml)
     set(oneValueArgs BASE_DIRECTORY NAME)
     set(multiValueArgs EXCLUDE EXECUTABLE EXECUTABLE_ARGS DEPENDENCIES)
     cmake_parse_arguments(Coverage "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
-    set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches --exclude-unreachable-branches")
+    set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
 
     if(NOT GCOVR_PATH)
         message(FATAL_ERROR "gcovr not found! Aborting...")
