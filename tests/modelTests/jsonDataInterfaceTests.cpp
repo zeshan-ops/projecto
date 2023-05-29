@@ -91,10 +91,10 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     using a separate file/executable that would run first and create the test files.
     This way just seems easier. */
     TEST_CASE("Creating test file") {
-    std::ofstream testFile1("testFile1.json");
+        std::ofstream testFile1("testFile1.json");
 
-    testFile1 << testFile1Data.dump(3);
-    testFile1.close();
+        testFile1 << testFile1Data.dump(3);
+        testFile1.close();
     }
 
     ////////////////////////////////////////////////////////////////////////////////
