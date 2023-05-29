@@ -1,11 +1,7 @@
 #include "viewUtilities.h"
 
 std::string viewUtil :: truncateText(std::string text, unsigned int truncLength) {    
-    if(truncLength == 0) {
-        return text;
-    }
-
-    if(text.length() == 0) {
+    if(truncLength == 0 || text.length() == 0) {
         return text;
     }
 
@@ -24,19 +20,21 @@ std::string viewUtil :: truncateText(std::string text, unsigned int truncLength)
 }
 
 std::string viewUtil :: wrapText(std::string text, unsigned int lineLength) {
-    for(unsigned int i = 1; i < std::ceil(text.length()/lineLength) + 1; i ++) {
-        for(unsigned int j = 0; j < lineLength; j++) {
-            if((lineLength*i) > text.length()){
-                break;
-            }
-            else {
-                if(text[(lineLength*i)-j] == ' '){
-                    text.at((lineLength*i)-j) = '\n';
-                    break;
-                }
-            }
-        }
+    if(text.length() == 0 || lineLength == 0) {
+        return "";
+    }
+    
+    if(text.length() <= lineLength) {
+        return text;
     }
 
+    for(unsigned int i = 0; i < std::ceil(text.length()/lineLength); i ++) {
+        for(unsigned int j = 0; j < lineLength; j++) {
+                if(text[(lineLength*(i+1)-j+1)] == ' '){
+                    text.at((lineLength*(i+1)-j+1)) = '\n';
+                    break;
+                }
+        }
+    }
     return text;
 }
