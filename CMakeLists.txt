@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.26)
 
-project(projecto)
+project(Projecto
+        VERSION 0.1.0
+        DESCRIPTION "CLI Project Management Tool"
+        LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS off)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(unitTests
     tests/mainTests.cpp
@@ -14,6 +17,8 @@ add_executable(unitTests
     tests/modelTests/jsonDataInterfaceTests.cpp
     tests/viewTests/viewTableTests.cpp
     tests/viewTests/viewUtilitiesTests.cpp
+    tests/viewTests/viewDetailTests.cpp
+    tests/viewTests/viewProjectTests.cpp
     src/model/task.cpp
     src/model/task.h
     src/model/log.cpp
@@ -29,8 +34,6 @@ add_executable(unitTests
     src/view/viewProject.h
     src/view/viewTable.cpp
     src/view/viewTable.h
-    src/view/viewTask.cpp
-    src/view/viewTask.h
     src/view/viewUtilities.cpp
     src/view/viewUtilities.h)
 

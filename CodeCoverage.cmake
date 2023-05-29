@@ -232,6 +232,7 @@ function(setup_target_for_coverage_lcov)
     set(oneValueArgs BASE_DIRECTORY NAME)
     set(multiValueArgs EXCLUDE EXECUTABLE EXECUTABLE_ARGS DEPENDENCIES LCOV_ARGS GENHTML_ARGS)
     cmake_parse_arguments(Coverage "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    set(Coverage_LCOV_ARGS "--no-external")
 
     if(NOT LCOV_PATH)
         message(FATAL_ERROR "lcov not found! Aborting...")
@@ -411,6 +412,7 @@ function(setup_target_for_coverage_gcovr_xml)
     set(oneValueArgs BASE_DIRECTORY NAME)
     set(multiValueArgs EXCLUDE EXECUTABLE EXECUTABLE_ARGS DEPENDENCIES)
     cmake_parse_arguments(Coverage "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches --exclude-unreachable-branches")
 
     if(NOT GCOVR_PATH)
         message(FATAL_ERROR "gcovr not found! Aborting...")
@@ -447,7 +449,7 @@ function(setup_target_for_coverage_gcovr_xml)
     )
     # Running gcovr
     set(GCOVR_XML_CMD
-        ${GCOVR_PATH} --xml ${Coverage_NAME}.xml -r ${BASEDIR} --exclude-throw-branches --exclude-unreachable-branches
+        ${GCOVR_PATH} --xml ${Coverage_NAME}.xml -r ${BASEDIR} ${GCOVR_ADDITIONAL_ARGS}
         ${GCOVR_EXCLUDE_ARGS} --object-directory=${PROJECT_BINARY_DIR}
     )
 
