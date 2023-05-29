@@ -13,6 +13,7 @@ add_executable(unitTests
     tests/modelTests/taskTests.cpp
     tests/modelTests/jsonDataInterfaceTests.cpp
     tests/viewTests/viewTableTests.cpp
+    tests/viewTests/viewUtilitiesTests.cpp
     src/model/task.cpp
     src/model/task.h
     src/model/log.cpp
