@@ -12,6 +12,7 @@ add_executable(unitTests
     tests/modelTests/projectTests.cpp
     tests/modelTests/taskTests.cpp
     tests/modelTests/jsonDataInterfaceTests.cpp
+    tests/viewTests/viewTableTests.cpp
     src/model/task.cpp
     src/model/task.h
     src/model/log.cpp
@@ -19,7 +20,18 @@ add_executable(unitTests
     src/model/project.cpp
     src/model/project.h
     src/model/jsonDataInterface.cpp
-    src/model/jsonDataInterface.h)
+    src/model/jsonDataInterface.h
+    src/view/viewDetail.cpp
+    src/view/viewDetail.h
+    src/view/ansiMacros.h
+    src/view/viewProject.cpp
+    src/view/viewProject.h
+    src/view/viewTable.cpp
+    src/view/viewTable.h
+    src/view/viewTask.cpp
+    src/view/viewTask.h
+    src/view/viewUtilities.cpp
+    src/view/viewUtilities.h)
 
 target_compile_options(unitTests PUBLIC -W -Wall -Wextra -Wpedantic -Wsign-conversion)
 
