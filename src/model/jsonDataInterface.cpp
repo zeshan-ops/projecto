@@ -28,7 +28,7 @@ Project jsonDataInterface :: getProject(std::string projectName) {
     
     std::vector<Task> taskList;
 
-    if(projectData["tasks"].size() > 0) {
+    if(!projectData["tasks"].empty()) {
         for(auto& task : projectData["tasks"]){
             Task t(task["text"]);
             t.setUrgency(task["urgency"]);
@@ -40,7 +40,7 @@ Project jsonDataInterface :: getProject(std::string projectName) {
 
     std::vector<Log> logList;
 
-    if(projectData["logs"].size() > 0) {
+    if(!projectData["logs"].empty()) {
         for(auto& log : projectData["logs"]){
             Log l(log["text"], log["time"]);
             logList.push_back(l);
