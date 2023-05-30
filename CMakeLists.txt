@@ -40,11 +40,12 @@ add_executable(unitTests
     src/controller/cliParser.cpp
     src/controller/cliParser.h)
 
-target_compile_options(unitTests PUBLIC -W -Wall -Wextra -Wpedantic -Wsign-conversion)
+target_compile_options(unitTests PUBLIC -O2 -W -Wall -Wextra -Wpedantic -Wsign-conversion)
 
 include(CodeCoverage.cmake)
 append_coverage_compiler_flags()
 setup_target_for_coverage_gcovr_xml(
     NAME projecto_coverage 
     EXECUTABLE unitTests
-    EXCLUDE "${PROJECT_SOURCE_DIR}/src/model/json.hpp" "${PROJECT_SOURCE_DIR}/tests/*")
+    EXCLUDE "${PROJECT_SOURCE_DIR}/src/model/json.hpp"
+            "${PROJECT_SOURCE_DIR}/tests/*")

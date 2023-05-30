@@ -164,7 +164,7 @@ foreach(LANG ${LANGUAGES})
   endif()
 endforeach()
 
-set(COVERAGE_COMPILER_FLAGS "-g --coverage"
+set(COVERAGE_COMPILER_FLAGS "-g --coverage -fno-exceptions"
     CACHE INTERNAL "")
 if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
     include(CheckCXXCompilerFlag)
@@ -261,7 +261,7 @@ function(setup_target_for_coverage_lcov)
 
     # Conditional arguments
     if(CPPFILT_PATH AND NOT ${Coverage_NO_DEMANGLE})
-      set(GENHTML_EXTRA_ARGS "--demangle-cpp")
+      set(GENHTML_EXTRA_ARGS "--demangle-cpp" "--ignore-errors inconsistent")
     endif()
 
     # Setting up commands which will be run to generate coverage data.
@@ -358,8 +358,8 @@ function(setup_target_for_coverage_lcov)
         COMMAND ${LCOV_CAPTURE_CMD}
         COMMAND ${LCOV_BASELINE_COUNT_CMD}
         COMMAND ${LCOV_FILTER_CMD}
-        COMMAND ${LCOV_GEN_HTML_CMD}
-        ${GCOVR_XML_CMD_COMMAND}
+        #COMMAND ${LCOV_GEN_HTML_CMD}
+        #${GCOVR_XML_CMD_COMMAND}
 
         # Set output files as GENERATED (will be removed on 'make clean')
         BYPRODUCTS
