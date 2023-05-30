@@ -2,6 +2,7 @@
 
 #include "../../src/model/jsonDataInterface.h"
 #include <filesystem>
+#include <sstream>
 
 TEST_SUITE("JSON Data Interface Class Tests") {
 
@@ -95,45 +96,36 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     couldn't figure out an alternative way to create a test file in doctest without
     using a separate file/executable that would run first and create the test files.
     This way just seems easier. */
-    TEST_CASE("Creating test file") {
-        std::ofstream testFile1("testFile1.json");
-
-        testFile1 << testFile1Data.dump(3);
-        testFile1.close();
-    }
 
     ////////////////////////////////////////////////////////////////////////////////
-    TEST_CASE("Constructor member initialisation") {
-        std::ifstream inputFile("testFile1.json");
+    TEST_CASE("Constructor member initialisation with sstream") {
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         CHECK(testDataInterface.getData() == testFile1Data);
-        CHECK(!inputFile.is_open());
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Return single JSON project from array of projects") {
-        std::ifstream inputFile("testFile1.json");
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         json expectedProject = testFile1Data[0];
         CHECK(testDataInterface.getJSONProject("Test Project 1") == expectedProject);
-        CHECK(!inputFile.is_open());
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Handling request to find an object that doesn't exist") {
-        std::ifstream inputFile("testFile1.json");
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         json nonExistingProject = testDataInterface.getJSONProject("Oopsie daisy");
         CHECK(nonExistingProject["projectName"] == "ERROR: Project does not exist!");
-        CHECK(!inputFile.is_open());
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Return complete Project object") {
-        std::ifstream inputFile("testFile1.json");
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         Project expectedProject("Test Project 1");
@@ -149,33 +141,30 @@ TEST_SUITE("JSON Data Interface Class Tests") {
         expectedProject.addLog(log1); expectedProject.addLog(log2); expectedProject.addLog(log3);
 
         CHECK(testDataInterface.getProject("Test Project 1") == expectedProject);
-        CHECK(!inputFile.is_open());
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Handling request to return Project object that doesnt exist") {
-        std::ifstream inputFile("testFile1.json");
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         Project expectedProject("ERROR: Project does not exist!");
         CHECK(testDataInterface.getProject("Oopsie daisy") == expectedProject);
-        CHECK(!inputFile.is_open());
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Return Project object that has no tasks or logs") {
-        std::ifstream inputFile("testFile1.json");
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         Project expectedProject("Test Project 3");
 
         CHECK(testDataInterface.getProject("Test Project 3") == expectedProject);
-        CHECK(!inputFile.is_open());
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Data editing method checks") {
-        std::ifstream inputFile("testFile1.json");
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         SUBCASE("Replacing a project using JSON data") {
@@ -228,16 +217,16 @@ TEST_SUITE("JSON Data Interface Class Tests") {
 
     ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Data writing tests") {
-        std::ifstream inputFile("testFile1.json");
+        std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
         testDataInterface.writeData("writingTest.json");
 
         std::ifstream inputFile2("writingTest.json");
         jsonDataInterface secondDataInterface(inputFile2);
+        inputFile2.close();
 
         CHECK(secondDataInterface.getData() == testDataInterface.getData());
-        CHECK(!inputFile.is_open());
         CHECK(!inputFile2.is_open());
     }
 
@@ -245,10 +234,8 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     /* This final test case just deletes all test files created during this test
     suite. */
     TEST_CASE("Delete test files") {
-        int deleteFile1 = std::remove("testFile1.json");
         int deleteFile2 = std::remove("writingTest.json");
 
-        CHECK(deleteFile1 == 0);
         CHECK(deleteFile2 == 0);
     }
 }

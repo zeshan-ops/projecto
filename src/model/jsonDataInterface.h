@@ -21,7 +21,7 @@ class jsonDataInterface {
         json allData;
     public:
         // READING METHODS
-        jsonDataInterface(std::ifstream& inputFile);
+        jsonDataInterface(std::istream& inputFile);
 
         json getData();
         json getJSONProject(std::string projectName);
