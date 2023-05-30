@@ -27,7 +27,7 @@ TEST_SUITE("View Table Tests") {
         
         std::string expectedString = composer.str();
         
-        CHECK(std::strcmp(generatedString.c_str(),expectedString.c_str()) == 0);
+        CHECK(generatedString == expectedString);
     }
 
     TEST_CASE("Correctly handling errors in table input") {

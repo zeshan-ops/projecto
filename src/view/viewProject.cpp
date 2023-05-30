@@ -12,7 +12,7 @@ std::string viewProject :: render() {
     // VIEW HEADER
     std::stringstream composer;
 
-    composer << std::endl;
+    composer << "\n";
 
     composer << txtBold << std::right << txtGreen << std::setw(40+std::ceil(projectName.length()/2))
               << projectName;
@@ -25,7 +25,7 @@ std::string viewProject :: render() {
         composer << txtDim << "No outstanding tasks!" << txtReset << "\n";
     } else {
         viewTable taskTable(taskHeaders, tasks);
-        std::vector<unsigned int> taskTableWidths = {3, 63, 4, 10};
+        std::vector<unsigned int> taskTableWidths = {2, 63, 1, 10};
         composer << taskTable.render(taskTableWidths);
         composer << txtDim << "(" << tasks.size() << " tasks)" << txtReset << "\n";
     }
@@ -35,7 +35,7 @@ std::string viewProject :: render() {
     // LAST ACTION
     composer << txtGreen << txtBold << "LAST ACTION" << txtReset;
     
-    composer << std::endl;
+    composer << "\n";
 
     if(lastAction.size() == 0) {
         composer << txtDim << "No last action!" << txtReset;
