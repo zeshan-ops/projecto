@@ -35,7 +35,9 @@ add_executable(unitTests
     src/view/viewTable.cpp
     src/view/viewTable.h
     src/view/viewUtilities.cpp
-    src/view/viewUtilities.h)
+    src/view/viewUtilities.h
+    src/controller/cliParser.cpp
+    src/controller/cliParser.h)
 
 target_compile_options(unitTests PUBLIC -W -Wall -Wextra -Wpedantic -Wsign-conversion)
 
