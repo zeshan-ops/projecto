@@ -80,6 +80,11 @@ TEST_SUITE("JSON Data Interface Class Tests") {
                 "time": 2
             }
         ]
+    },
+    {
+        "projectName": "Test Project 3",
+        "tasks": [],
+        "logs": []
     }
     ])");
 
@@ -117,7 +122,7 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     }
 
     ////////////////////////////////////////////////////////////////////////////////
-    TEST_CASE("Return Project object") {
+    TEST_CASE("Return complete Project object") {
         std::ifstream inputFile("testFile1.json");
         jsonDataInterface testDataInterface(inputFile);
 
@@ -138,6 +143,17 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     }
 
     ////////////////////////////////////////////////////////////////////////////////
+    TEST_CASE("Return Project object that has no tasks or logs") {
+        std::ifstream inputFile("testFile1.json");
+        jsonDataInterface testDataInterface(inputFile);
+
+        Project expectedProject("Test Project 3");
+
+        CHECK(testDataInterface.getProject("Test Project 3") == expectedProject);
+        CHECK(!inputFile.is_open());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Data editing method checks") {
         std::ifstream inputFile("testFile1.json");
         jsonDataInterface testDataInterface(inputFile);
@@ -147,7 +163,7 @@ TEST_SUITE("JSON Data Interface Class Tests") {
             jsonProject["projectName"] = "Edited test project";
             testDataInterface.editProjectJSON(jsonProject, "Test Project 1");
 
-            CHECK(testDataInterface.getData().size() == 2);
+            CHECK(testDataInterface.getData().size() == 3);
             CHECK(testDataInterface.getJSONProject("Edited test project") == jsonProject);
         }
 
@@ -158,7 +174,7 @@ TEST_SUITE("JSON Data Interface Class Tests") {
 
             testDataInterface.editProject(projectData, "Test Project 1");
 
-            CHECK(testDataInterface.getData().size() == 2);
+            CHECK(testDataInterface.getData().size() == 3);
             CHECK(testDataInterface.getProject("Test Project 1") == projectData);
             CHECK(testDataInterface.getProject("Test Project 1").getTasks().size() == 4);
             CHECK(testDataInterface.getProject("Test Project 1").getTask(3).getText() == "Task 4");
@@ -172,7 +188,7 @@ TEST_SUITE("JSON Data Interface Class Tests") {
 
             testDataInterface.addNewProjectJSON(newProject);
 
-            CHECK(testDataInterface.getData().size() == 3);
+            CHECK(testDataInterface.getData().size() == 4);
             CHECK(testDataInterface.getJSONProject("New test project") == newProject);
             CHECK(testDataInterface.getJSONProject("New test project")["tasks"].size() == 0);
             CHECK(testDataInterface.getJSONProject("New test project")["logs"].size() == 0);
@@ -185,7 +201,7 @@ TEST_SUITE("JSON Data Interface Class Tests") {
         SUBCASE("Deleting a project") {
             testDataInterface.deleteProject("Test Project 1");
 
-            CHECK(testDataInterface.getData().size() == 1);
+            CHECK(testDataInterface.getData().size() == 2);
             CHECK(testDataInterface.getData()[0]["projectName"] == "Test Project 2");
         }
     }
