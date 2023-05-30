@@ -18,7 +18,7 @@ TEST_SUITE("CLI Parser Tests") {
                 "cmd", "arg1", "arg2", "arg3"
             };
             
-            cmdArgs[0] == cmd;
+            cmdArgs[0] = cmd;
 
             cliParser cmdChooser(cmdArgs);
             CHECK(cmdChooser.command_exists());
@@ -39,7 +39,7 @@ TEST_SUITE("CLI Parser Tests") {
                 "cmd", "arg1", "arg2", "arg3"
             };
 
-            cmdArgs[0] == cmd;
+            cmdArgs[0] = cmd;
 
             cliParser cmdChooser(cmdArgs);
             CHECK(!cmdChooser.command_exists());

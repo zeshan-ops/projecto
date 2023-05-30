@@ -19,6 +19,7 @@ add_executable(unitTests
     tests/viewTests/viewUtilitiesTests.cpp
     tests/viewTests/viewDetailTests.cpp
     tests/viewTests/viewProjectTests.cpp
+    tests/controllerTests/cliParserTests.cpp
     src/model/task.cpp
     src/model/task.h
     src/model/log.cpp
