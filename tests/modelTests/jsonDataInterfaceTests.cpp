@@ -122,6 +122,16 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     }
 
     ////////////////////////////////////////////////////////////////////////////////
+    TEST_CASE("Handling request to find an object that doesn't exist") {
+        std::ifstream inputFile("testFile1.json");
+        jsonDataInterface testDataInterface(inputFile);
+
+        json nonExistingProject = testDataInterface.getJSONProject("Oopsie daisy");
+        CHECK(nonExistingProject["projectName"] == "ERROR: Project does not exist!");
+        CHECK(!inputFile.is_open());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Return complete Project object") {
         std::ifstream inputFile("testFile1.json");
         jsonDataInterface testDataInterface(inputFile);
@@ -139,6 +149,16 @@ TEST_SUITE("JSON Data Interface Class Tests") {
         expectedProject.addLog(log1); expectedProject.addLog(log2); expectedProject.addLog(log3);
 
         CHECK(testDataInterface.getProject("Test Project 1") == expectedProject);
+        CHECK(!inputFile.is_open());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    TEST_CASE("Handling request to return Project object that doesnt exist") {
+        std::ifstream inputFile("testFile1.json");
+        jsonDataInterface testDataInterface(inputFile);
+
+        Project expectedProject("ERROR: Project does not exist!");
+        CHECK(testDataInterface.getProject("Oopsie daisy") == expectedProject);
         CHECK(!inputFile.is_open());
     }
 

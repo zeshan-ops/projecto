@@ -19,12 +19,23 @@ json jsonDataInterface :: getJSONProject(std::string projectName) {
         return it != x.end() and it.value() == projectName;
     });
 
+    if(jsonProject == allData.end()){
+        json projectNotFound;
+        projectNotFound["projectName"] = "ERROR: Project does not exist!";
+        return projectNotFound;
+    }
+
     return *jsonProject;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 Project jsonDataInterface :: getProject(std::string projectName) {
     json projectData = getJSONProject(projectName);
+
+    if(projectData["projectName"] == "ERROR: Project does not exist!") {
+        Project errorProjectNotFound{projectData["projectName"]};
+        return errorProjectNotFound;
+    }
     
     std::vector<Task> taskList;
 
