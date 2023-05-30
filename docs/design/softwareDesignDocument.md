@@ -153,7 +153,7 @@ This program flow diagram elucidates how the different parts of the system are e
 ## Testing
 Projecto will be unit-tested and integration tested. The [Doctest](https://github.com/doctest/doctest) header-only library will be used for testing. The development process will be similar to TDD for Projecto without rigidly sticking to the requirement of writing test cases before code. I have found that sometimes a first draft of a unit of code is useful in elucidating the syntax the code will use and its necessary test cases.
 
-Code coverage will also be measured using gcov.
+Code coverage will also be measured using gcov with [Gcovr](https://github.com/gcovr/gcovr) providing the coverage reports. The aim is to get as high as branch coverage as possible, though I anticipate this being difficult due to C++ throw branches.
 
 ## Deployment and maintenance
 Projecto will make use of continuous integration (CI) during development and after initial release. Github actions will be used to implement the CI.
