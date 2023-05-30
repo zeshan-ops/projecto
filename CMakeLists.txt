@@ -40,7 +40,7 @@ add_executable(unitTests
     src/controller/cliParser.cpp
     src/controller/cliParser.h)
 
-target_compile_options(unitTests PUBLIC -O2 -W -Wall -Wextra -Wpedantic -Wsign-conversion)
+target_compile_options(unitTests PUBLIC -W -Wall -Wextra -Wpedantic -Wsign-conversion)
 
 include(CodeCoverage.cmake)
 append_coverage_compiler_flags()
