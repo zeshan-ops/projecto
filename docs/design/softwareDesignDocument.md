@@ -10,6 +10,7 @@ This document outlines the design of Projecto, a simple command line interface p
     - [Overview](#overview)
     - [Implementation Details](#implementation-details)
 - [Testing](#testing)
+    - [Code coverage](#code-coverage)
 - [Deployment and maintenance](#deployment-and-maintenance)
 ---
 
@@ -152,7 +153,10 @@ This program flow diagram elucidates how the different parts of the system are e
 ## Testing
 Projecto will be unit-tested and integration tested. The [Doctest](https://github.com/doctest/doctest) header-only library will be used for testing. The development process will be similar to TDD without rigidly sticking to the requirement of writing test cases before code. I have found that sometimes a first draft of a unit of code is useful in elucidating the syntax the code will use and its necessary test cases. Generally, code will be written in small units, tested and refactored before developing the next part of the codebase.
 
-Code coverage will also be measured using gcov with [Gcovr](https://github.com/gcovr/gcovr) providing the coverage reports. The aim is to get as high a branch coverage as possible, though I anticipate this being difficult due to C++ throw branches.
+### Code Coverage
+Code coverage will also be measured using gcov with [Gcovr](https://github.com/gcovr/gcovr) providing the coverage reports. The aim is to get 100% coverage except for STL throw branches for now.
+
+The Apple Clang compiler does not seem to mark throw branches in a manner that is compatible with the gcovr `--exclude-throw-branches` command, so the `-fno-exception` flag will be used to compile a build to produce code coverage. Tests will be conducted without this flag, and the release will also not have this flag. A future goal may be to develop the codebase to catch and deal with these errors, but it will be a lot of work.
 
 ## Deployment and maintenance
 Projecto will make use of continuous integration (CI) during development and after initial release. Github actions will be used to implement the CI.
