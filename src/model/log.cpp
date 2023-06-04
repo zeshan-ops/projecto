@@ -1,24 +1,24 @@
 #include "log.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-Log::Log(std::string text, int time) : logText(text), logTime(time) {};
+Log::Log(std::string text) : logText_(text), logTime_(floor<seconds>(system_clock::now())) {};
 
 ///////////////////////////////////////////////////////////////////////////////
 /* SETTERS */
-void Log::setText(const std::string& newLogText) {
-    logText = newLogText;
+void Log::setText(const std::string logText) {
+    logText_ = logText;
 }
 
-void Log::setTime(const int newTime) {
-    logTime = newTime;
+void Log::setTime(const time_point<system_clock, seconds>& logTime) {
+    logTime_ = logTime;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /* GETTERS */
 std::string Log::getText() const {
-    return logText;
+    return logText_;
 }
 
-int Log::getTime() const {
-    return logTime;
+time_point<system_clock, seconds> Log::getTimePoint() const {
+    return logTime_;
 }

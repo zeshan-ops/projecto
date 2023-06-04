@@ -9,27 +9,29 @@ BLANK SPACE FOR DOCUMENTATION LATER
 
 #include <string>
 #include <chrono>
+#include "date.h"
 
-namespace sc = std::chrono;
+using namespace date;
+using namespace std::chrono;
 
 class Log {
     private:
-        std::string logText;
-        int logTime;
+        std::string logText_;
+        time_point<system_clock, seconds> logTime_;
 
     public:
-        Log(std::string text, int time);
+        Log(std::string text);
 
         // setters & getters
-        void setText(const std::string& newLogText);
-        void setTime(const int newTime);
+        void setText(const std::string logText);
+        void setTime(const time_point<system_clock, seconds>& logTime);
 
         std::string getText() const;
-        int getTime() const;
+        time_point<system_clock, seconds> getTimePoint() const;
 
         bool operator==(const Log& a) const {
-            return a.logText == logText;
-            return a.logTime == logTime;
+            return a.logText_ == logText_
+                && a.logTime_ == logTime_;
         }
 };
 
