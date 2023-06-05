@@ -8,36 +8,57 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #define TASK_H
 
 #include <string>
+#include <vector>
+#include "date.h"
+
+using namespace date;
+using namespace std::chrono;
 
 class Task {
     private:
-        std::string taskText;
-        int urgency;            // 0, 1, 2, 3 for null, L, M, H urgencies.
-        int dueDate;            // 0 is no date.
-        bool completed;
+        std::string taskText_;
+        int urgency_;    // 0, 1, 2, 3 for null, L, M, H urgencies.
+        time_point<system_clock, days> dueDate_;            
+        bool completed_;
 
     public:
-        // constructor
-        Task(std::string text);
+        Task(std::string taskText);
+        Task(std::string taskText, int urgency, time_point<system_clock, days> dueDate);
 
-        // Setters
         void setText(const std::string newText);
         void setUrgency(const int newUrg);
-        void setDueDate(const int newTime);
-        void setCompleted(const bool completion);
+        void setDueDate(const time_point<system_clock, days> newTime);
+        void setCompleted(const bool completed);
 
-        // Getters
         std::string getText() const;
         int getUrgency() const;
-        int getDueDate() const;
+        time_point<system_clock, days> getDueTimePoint() const;
         bool getCompleted() const;
 
-        // comparison overload
+        // string converter
+        std::vector<std::string> stringVector() const;
+
         bool operator==(const Task& a) const {
-            return a.taskText == taskText
-                && a.completed == completed
-                && a.dueDate == dueDate
-                && a.urgency == urgency;
+            return a.taskText_ == taskText_
+                && a.completed_ == completed_
+                && a.dueDate_ == dueDate_
+                && a.urgency_ == urgency_;
+        }
+
+        bool operator<(const Task& a) const {
+            if (dueDate_ == a.dueDate_) {
+                return urgency_ < a.urgency_;
+            } else {
+                return dueDate_ < a.dueDate_;
+            }
+        }
+
+        bool operator>(const Task& a) const {
+            if (dueDate_ == a.dueDate_) {
+                return urgency_ > a.urgency_;
+            } else {
+                return dueDate_ > a.dueDate_;
+            }
         }
 };
 

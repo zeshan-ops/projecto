@@ -2,64 +2,80 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 /* CONSTRUCTOR */
-Project :: Project(std::string name) : projectName(name) {};
+Project :: Project(std::string name) : projectName_(name) {};
 
 ////////////////////////////////////////////////////////////////////////////////
 /* TASK MANIPULATORS */
 void Project :: addTask(const Task& task) {
-    tasks.push_back(task);
+    tasks_.push_back(task);
+    if (tasks_.size() > 1) {
+        std::sort(tasks_.begin(), tasks_.end(), std::greater<Task>());
+    }
 }
 
 void Project :: editTask(unsigned int taskID, const Task& task) {
-    tasks[taskID] = task;
+    tasks_[taskID] = task;
+    if (tasks_.size() > 1) {
+        std::sort(tasks_.begin(), tasks_.end(), std::greater<Task>());
+    }
 }
 
 void Project :: deleteTask(unsigned int taskID) {
-    tasks.erase(tasks.begin()+taskID);
+    tasks_.erase(tasks_.begin()+taskID);
 }
 
 void Project :: setTasks(std::vector<Task>& taskList) {
-    tasks = taskList;
+    tasks_ = taskList;
+    if (tasks_.size() > 1) {
+        std::sort(tasks_.begin(), tasks_.end(), std::greater<Task>());
+    }
+
 }
 
 /* LOG MANIPULATORS*/
 void Project :: addLog(const Log& log) {
-    logs.push_back(log);
+    logs_.push_back(log);
+    if (logs_.size() > 1) {
+        std::sort(logs_.begin(), logs_.end());
+    }
 }
 
 void Project :: deleteLog(unsigned int logID) {
-    logs.erase(logs.begin()+logID);
+    logs_.erase(logs_.begin()+logID);
 }
 
 void Project :: setLogs(std::vector<Log>& logList) {
-    logs = logList;
+    logs_ = logList;
+    if (logs_.size() > 1) {
+        std::sort(logs_.begin(), logs_.end());
+    }
 }
 
 /* PROJECT SETTERS */
 void Project :: setName(std::string newName) {
-    projectName = newName;
+    projectName_ = newName;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 /* TASK GETTERS */
 std::vector<Task> Project :: getTasks() const {
-    return tasks;
+    return tasks_;
 }
 
 Task Project :: getTask(unsigned int taskID) const {
-    return tasks[taskID];
+    return tasks_[taskID];
 }
 
 /* LOG GETTERS */
 std::vector<Log> Project :: getLogs() const {
-    return logs;
+    return logs_;
 }
 
 Log Project :: getLog(unsigned int logID) const {
-    return logs[logID];
+    return logs_[logID];
 }
 
 /* PROJECT GETTERS */
 std::string Project :: getName() const {
-    return projectName;
+    return projectName_;
 }

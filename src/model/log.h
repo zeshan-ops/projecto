@@ -22,7 +22,6 @@ class Log {
     public:
         Log(std::string text);
 
-        // setters & getters
         void setText(const std::string logText);
         void setTime(const time_point<system_clock, seconds>& logTime);
 
@@ -32,6 +31,10 @@ class Log {
         bool operator==(const Log& a) const {
             return a.logText_ == logText_
                 && a.logTime_ == logTime_;
+        }
+
+        bool operator<(const Log& a) const {
+            return logTime_ < a.logTime_;
         }
 };
 

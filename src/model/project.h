@@ -14,9 +14,9 @@ BLANK SPACE FOR DOCUMENTATION LATER
 
 class Project {
     private:
-        std::string projectName;
-        std::vector<Task> tasks;
-        std::vector<Log> logs;
+        std::string projectName_;
+        std::vector<Task> tasks_;
+        std::vector<Log> logs_;
 
     public:
         // Manual constructor
@@ -45,9 +45,9 @@ class Project {
 
         // comparison operator
         bool operator==(const Project& a) const {
-            return a.tasks == tasks
-                && a.logs == logs
-                && a.projectName == projectName;
+            return a.tasks_ == tasks_
+                && a.logs_ == logs_
+                && a.projectName_ == projectName_;
         }
 };
 

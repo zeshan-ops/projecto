@@ -6,7 +6,7 @@
 
 TEST_SUITE("JSON Data Interface Class Tests") {
 
-    // testFile1 raw data
+    // Hard-coded test data string in json format
     json testFile1Data = json::parse(R"([
     {
         "projectName": "Test Project 1",
@@ -14,34 +14,34 @@ TEST_SUITE("JSON Data Interface Class Tests") {
             {
                 "text": "Task 1",
                 "urgency": 0,
-                "dueDate": 0,
+                "dueDate": "2020-01-01",
                 "completed": false
             },
             {
                 "text": "Task 2",
                 "urgency": 1,
-                "dueDate": 1,
+                "dueDate": "2020-01-02",
                 "completed": false
             },
             {
                 "text": "Task 3",
                 "urgency": 2,
-                "dueDate": 2,
+                "dueDate": "2020-01-03",
                 "completed": false
             }
         ],
         "logs": [
             {
                 "text": "Log 1",
-                "time": 0
+                "time": "2020-01-01 17:00:00"
             },
             {
                 "text": "Log 2",
-                "time": 1
+                "time": "2020-01-01 17:10:00"
             },
             {
                 "text": "Log 3",
-                "time": 2
+                "time": "2020-01-01 17:15:00"
             }
         ]
     },
@@ -51,34 +51,34 @@ TEST_SUITE("JSON Data Interface Class Tests") {
             {
                 "text": "Task 1",
                 "urgency": 0,
-                "dueDate": 0,
+                "dueDate": "2020-01-01",
                 "completed": false
             },
             {
                 "text": "Task 2",
                 "urgency": 1,
-                "dueDate": 1,
+                "dueDate": "2020-01-02",
                 "completed": false
             },
             {
                 "text": "Task 3",
                 "urgency": 2,
-                "dueDate": 2,
+                "dueDate": "2020-01-03",
                 "completed": false
             }
         ],
         "logs": [
             {
                 "text": "Log 1",
-                "time": 0
+                "time": "2020-01-01 17:00:00"
             },
             {
                 "text": "Log 2",
-                "time": 1
+                "time": "2020-01-01 17:10:00"
             },
             {
                 "text": "Log 3",
-                "time": 2
+                "time": "2020-01-01 17:15:00"
             }
         ]
     },
@@ -89,15 +89,6 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     }
     ])");
 
-
-    ////////////////////////////////////////////////////////////////////////////////
-    /* This first test case works as a setup for this test suite, it just creates
-    the JSON test file to be used in subsequent test cases. This was done because I
-    couldn't figure out an alternative way to create a test file in doctest without
-    using a separate file/executable that would run first and create the test files.
-    This way just seems easier. */
-
-    ////////////////////////////////////////////////////////////////////////////////
     TEST_CASE("Constructor member initialisation with sstream") {
         std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
@@ -115,12 +106,20 @@ TEST_SUITE("JSON Data Interface Class Tests") {
     }
 
     ////////////////////////////////////////////////////////////////////////////////
-    TEST_CASE("Handling request to find an object that doesn't exist") {
+    TEST_CASE("Checking if projects exist") {
         std::stringstream inputFile(testFile1Data.dump(3));
         jsonDataInterface testDataInterface(inputFile);
 
-        json nonExistingProject = testDataInterface.getJSONProject("Oopsie daisy");
-        CHECK(nonExistingProject["projectName"] == "ERROR: Project does not exist!");
+        SUBCASE("Existing project") {
+            CHECK(testDataInterface.projectExists("Test Project 1"));
+            CHECK(testDataInterface.projectExists("Test Project 2"));
+            CHECK(testDataInterface.projectExists("Test Project 3"));
+        }
+
+        SUBCASE("Non-existing project") {
+            CHECK(!testDataInterface.projectExists("Test Project"));
+            CHECK(!testDataInterface.projectExists("Random test"));
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -129,27 +128,31 @@ TEST_SUITE("JSON Data Interface Class Tests") {
         jsonDataInterface testDataInterface(inputFile);
 
         Project expectedProject("Test Project 1");
-        Task task1("Task 1");
-        Task task2("Task 2"); task2.setUrgency(1); task2.setDueDate(1);
-        Task task3("Task 3"); task3.setUrgency(2); task3.setDueDate(2);
 
-        expectedProject.addTask(task1); expectedProject.addTask(task2); expectedProject.addTask(task3);
+        Task task1("Task 1", 0, floor<days>(sys_days{2020_y/1/1}));
+        Task task2("Task 2", 1, floor<days>(sys_days{2020_y/1/2}));
+        Task task3("Task 3", 2, floor<days>(sys_days{2020_y/1/3}));
 
-        Log log1("Log 1", 0);
-        Log log2("Log 2", 1);
-        Log log3("Log 3", 2);
-        expectedProject.addLog(log1); expectedProject.addLog(log2); expectedProject.addLog(log3);
+        expectedProject.addTask(task1); 
+        expectedProject.addTask(task2); 
+        expectedProject.addTask(task3);
 
+        Log log1("Log 1");
+        log1.setTime(sys_days{2020_y/1/1} + 17h + 0min + 0s);
+
+        Log log2("Log 2");
+        log2.setTime(sys_days{2020_y/1/1} + 17h + 10min + 0s);
+        
+        Log log3("Log 3");
+        log3.setTime(sys_days{2020_y/1/1} + 17h + 15min + 0s);
+
+        expectedProject.addLog(log1); 
+        expectedProject.addLog(log2); 
+        expectedProject.addLog(log3);
+
+        CHECK(expectedProject.getTasks().size() == 3);
+        CHECK(expectedProject.getLogs().size() == 3);
         CHECK(testDataInterface.getProject("Test Project 1") == expectedProject);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    TEST_CASE("Handling request to return Project object that doesnt exist") {
-        std::stringstream inputFile(testFile1Data.dump(3));
-        jsonDataInterface testDataInterface(inputFile);
-
-        Project expectedProject("ERROR: Project does not exist!");
-        CHECK(testDataInterface.getProject("Oopsie daisy") == expectedProject);
     }
 
     ////////////////////////////////////////////////////////////////////////////////

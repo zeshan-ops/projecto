@@ -7,17 +7,40 @@ TEST_SUITE("Task Class Tests") {
         Task testTask("Test Task");
         CHECK(testTask.getText() == "Test Task");
         CHECK(testTask.getUrgency() == 0);
-        CHECK(testTask.getDueDate() == 0);
+        CHECK(testTask.getDueTimePoint() == sys_days{2000_y/1/1});
         CHECK(testTask.getCompleted() == false);
     }
 
-    TEST_CASE("Comparison operator tests") {
+    TEST_CASE("Full constructor initialisation") {
+        Task testTask("Test Task", 2, sys_days{2020_y/1/1});
+        CHECK(testTask.getText() == "Test Task");
+        CHECK(testTask.getUrgency() == 2);
+        CHECK(testTask.getDueTimePoint() == sys_days{2020_y/1/1});
+        CHECK(testTask.getCompleted() == false);
+    }
+
+    TEST_CASE("String converter") {
+        Task testTask("Test Task", 2, sys_days{2020_y/1/1});
+        std::vector<std::string> stringVectorTask = testTask.stringVector();
+        CHECK(stringVectorTask.size() == 4);
+        CHECK(stringVectorTask[0] == "Test Task");
+        CHECK(stringVectorTask[1] == "M");
+        CHECK(stringVectorTask[2] == format("%F %T", floor<days>(sys_days{2020_y/1/1})));
+        CHECK(stringVectorTask[3] == "false");
+    }
+
+    TEST_CASE("Equality operator tests") {
         Task taskA("Test Task A");
         Task taskB("Test Task B");
 
-        taskA.setUrgency(0); taskB.setUrgency(2);
-        taskA.setDueDate(1); taskB.setDueDate(2);
-        taskA.setCompleted(true); taskB.setCompleted(false);
+        taskA.setUrgency(0); 
+        taskA.setCompleted(true); 
+        taskA.setDueDate(sys_days{2023_y/1/1});
+        
+        taskB.setUrgency(2);
+        taskB.setCompleted(false);
+        taskB.setDueDate(sys_days{2023_y/1/2});
+
         
         CHECK(taskA != taskB);
 
@@ -30,13 +53,13 @@ TEST_SUITE("Task Class Tests") {
                 CHECK(taskA != taskB);
 
                 SUBCASE("Same text and completed and due") {
-                    taskA.setDueDate(taskB.getDueDate());
+                    taskA.setDueDate(taskB.getDueTimePoint());
                     CHECK(taskA != taskB);
                 }
             }
 
             SUBCASE("Same text and due") {
-                taskA.setDueDate(taskB.getDueDate());
+                taskA.setDueDate(taskB.getDueTimePoint());
                 CHECK(taskA != taskB);
 
                 SUBCASE("Same text and due and urg") {
@@ -62,7 +85,7 @@ TEST_SUITE("Task Class Tests") {
         }
 
         SUBCASE("Same due") {
-            taskA.setDueDate(taskB.getDueDate());
+            taskA.setDueDate(taskB.getDueTimePoint());
             CHECK(taskA != taskB);
 
             SUBCASE("Same due and comp") {
@@ -76,7 +99,7 @@ TEST_SUITE("Task Class Tests") {
             CHECK(taskA != taskB);
 
             SUBCASE("Same urg and due") {
-                taskA.setDueDate(taskB.getDueDate());
+                taskA.setDueDate(taskB.getDueTimePoint());
                 CHECK(taskA != taskB);
 
                 SUBCASE("Same urg and due and comp") {
@@ -89,9 +112,36 @@ TEST_SUITE("Task Class Tests") {
         SUBCASE("Same text, comp, due and urg") {
             taskA.setText(taskB.getText());
             taskA.setCompleted(taskB.getCompleted());
-            taskA.setDueDate(taskB.getDueDate());
+            taskA.setDueDate(taskB.getDueTimePoint());
             taskA.setUrgency(taskB.getUrgency());
             CHECK(taskA == taskB);
+        }
+    }
+
+    TEST_CASE("Less than operator tests") {
+        Task taskA("Test Task A");
+        Task taskB("Test Task B");
+
+        taskA.setUrgency(0); 
+        taskA.setCompleted(true); 
+        taskA.setDueDate(sys_days{2023_y/1/1});
+        
+        taskB.setUrgency(2);
+        taskB.setCompleted(false);
+        taskB.setDueDate(sys_days{2023_y/1/2});
+
+        SUBCASE("Due date less, urgency less") {
+            CHECK(taskA < taskB);
+        }
+
+        SUBCASE("Due date less, urgency equal") {
+            taskB.setUrgency(taskA.getUrgency());
+            CHECK(taskA < taskB);
+        }
+
+        SUBCASE("Due date equal, urgency less") {
+            taskB.setDueDate(taskA.getDueTimePoint());
+            CHECK(taskA < taskB);
         }
     }
 }

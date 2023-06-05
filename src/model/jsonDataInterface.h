@@ -13,6 +13,8 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #include <filesystem>
 #include "json.hpp"
 #include "project.h"
+#include "date.h"
+#include "modelUtilities.h"
 
 using nlohmann::json;
 
@@ -22,6 +24,8 @@ class jsonDataInterface {
     public:
         // READING METHODS
         jsonDataInterface(std::istream& inputFile);
+
+        bool projectExists(std::string projectName);
 
         json getData();
         json getJSONProject(std::string projectName);

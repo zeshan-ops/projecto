@@ -6,6 +6,20 @@ jsonDataInterface :: jsonDataInterface(std::istream& inputFile) :
     allData(json::parse(inputFile)) {};
 
 ////////////////////////////////////////////////////////////////////////////////
+bool jsonDataInterface :: projectExists(std::string projectName) {
+    auto jsonProject = std::find_if(allData.begin(), allData.end(), [projectName](const json& x) {
+        auto it = x.find("projectName");
+        return it != x.end() and it.value() == projectName;
+    });
+
+    if (jsonProject != allData.end()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 json jsonDataInterface :: getData() {
     return allData;
 }
@@ -17,12 +31,6 @@ json jsonDataInterface :: getJSONProject(std::string projectName) {
         return it != x.end() and it.value() == projectName;
     });
 
-    if(jsonProject == allData.end()){
-        json projectNotFound;
-        projectNotFound["projectName"] = "ERROR: Project does not exist!";
-        return projectNotFound;
-    }
-
     return *jsonProject;
 }
 
@@ -30,19 +38,15 @@ json jsonDataInterface :: getJSONProject(std::string projectName) {
 Project jsonDataInterface :: getProject(std::string projectName) {
     json projectData = getJSONProject(projectName);
 
-    if(projectData["projectName"] == "ERROR: Project does not exist!") {
-        Project errorProjectNotFound{projectData["projectName"]};
-        return errorProjectNotFound;
-    }
-    
     std::vector<Task> taskList;
 
     if(!projectData["tasks"].empty()) {
         for(auto& task : projectData["tasks"]){
-            Task t(task["text"]);
-            t.setUrgency(task["urgency"]);
-            t.setDueDate(task["dueDate"]);
+            time_point<system_clock, days> tp = floor<days>(modelUtil :: stringToTimePoint(task["dueDate"]));
+
+            Task t(task["text"], task["urgency"], tp);
             t.setCompleted(task["completed"]);
+
             taskList.push_back(t);
         }
     }
@@ -51,7 +55,8 @@ Project jsonDataInterface :: getProject(std::string projectName) {
 
     if(!projectData["logs"].empty()) {
         for(auto& log : projectData["logs"]){
-            Log l(log["text"], log["time"]);
+            Log l(log["text"]);
+            l.setTime(floor<seconds>(modelUtil :: stringToTimePoint(log["time"])));
             logList.push_back(l);
         }
     }
@@ -85,7 +90,7 @@ void jsonDataInterface :: editProject(const Project& projectData, std::string pr
     for(auto& task : projectData.getTasks()) {
         newData["tasks"][index]["text"] = task.getText();
         newData["tasks"][index]["urgency"] = task.getUrgency();
-        newData["tasks"][index]["dueDate"] = task.getDueDate();
+        newData["tasks"][index]["dueDate"] = format("%F %T", task.getDueTimePoint());
         newData["tasks"][index]["completed"] = task.getCompleted();
         ++index;
     }
@@ -94,7 +99,7 @@ void jsonDataInterface :: editProject(const Project& projectData, std::string pr
 
     for(auto& logEntry : projectData.getLogs()) {
         newData["logs"][index]["text"] = logEntry.getText();
-        newData["logs"][index]["time"] = logEntry.getTime();
+        newData["logs"][index]["time"] = format("%F %T",logEntry.getTimePoint());
         ++index;
     }
 

@@ -115,7 +115,7 @@ Each unique view will have its own object which has a single public render funct
 
 
 #### Controller
-The controller is responsible for taking user input, parsing it, verifying it and then communicating with the model + data and view to perform the appropriate actions.
+The controller is responsible for taking user input, parsing it, verifying it and then communicating with the model + data and view to perform the appropriate actions. It will be built using the *Command pattern*.
 
 The commands of Projecto can be split into three categories which follow similar steps:
 
