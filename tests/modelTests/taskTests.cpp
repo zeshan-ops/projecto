@@ -25,7 +25,7 @@ TEST_SUITE("Task Class Tests") {
         CHECK(stringVectorTask.size() == 4);
         CHECK(stringVectorTask[0] == "Test Task");
         CHECK(stringVectorTask[1] == "M");
-        CHECK(stringVectorTask[2] == format("%F %T", floor<days>(sys_days{2020_y/1/1})));
+        CHECK(stringVectorTask[2] == format("%F", floor<days>(sys_days{2020_y/1/1})));
         CHECK(stringVectorTask[3] == "false");
     }
 
@@ -131,12 +131,12 @@ TEST_SUITE("Task Class Tests") {
         taskB.setDueDate(sys_days{2023_y/1/2});
 
         SUBCASE("Due date less, urgency less") {
-            CHECK(taskA < taskB);
+            CHECK(taskB < taskA);
         }
 
         SUBCASE("Due date less, urgency equal") {
             taskB.setUrgency(taskA.getUrgency());
-            CHECK(taskA < taskB);
+            CHECK(taskB < taskA);
         }
 
         SUBCASE("Due date equal, urgency less") {

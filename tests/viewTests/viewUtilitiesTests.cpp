@@ -25,6 +25,10 @@ TEST_SUITE("View Utilities Test: Truncate Text") {
     TEST_CASE("Dealing with a string without spaces") {
         CHECK(viewUtil::truncateText("LOREMIPSUMDOLORES", 10) == "LOREMIP...");
     }
+
+    TEST_CASE("Truncating a date of format YYYY-MM-DD to 10 characters") {
+        CHECK(viewUtil::truncateText("2023-02-03", 10) == "2023-02-03");
+    }
 }
 
 TEST_SUITE("View Utilities Test: Wrap Text") {

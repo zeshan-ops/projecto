@@ -66,9 +66,9 @@ TEST_SUITE("Project Class Tests") {
         testProject.setTasks(tasks);
 
         CHECK(testProject.getTasks().size() == 3);
-        CHECK(testProject.getTask(0) == task1);
-        CHECK(testProject.getTask(1) == task2);
-        CHECK(testProject.getTask(2) == task3);
+        CHECK(testProject.getTask(0) == task3);
+        CHECK(testProject.getTask(1) == task1);
+        CHECK(testProject.getTask(2) == task2);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

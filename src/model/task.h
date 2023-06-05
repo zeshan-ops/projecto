@@ -9,6 +9,7 @@ BLANK SPACE FOR DOCUMENTATION LATER
 
 #include <string>
 #include <vector>
+#include <chrono>
 #include "date.h"
 
 using namespace date;
@@ -45,19 +46,27 @@ class Task {
                 && a.urgency_ == urgency_;
         }
 
+        // Task A < Task B if it has a later date, then a lower urgency
         bool operator<(const Task& a) const {
             if (dueDate_ == a.dueDate_) {
                 return urgency_ < a.urgency_;
-            } else {
+            } else if (dueDate_ == sys_days{2000_y/1/1}) {
                 return dueDate_ < a.dueDate_;
+            }
+            else {
+                return dueDate_ > a.dueDate_;
             }
         }
 
+        // Task A > Task B if it has an older date, then a higher urgency
         bool operator>(const Task& a) const {
             if (dueDate_ == a.dueDate_) {
                 return urgency_ > a.urgency_;
-            } else {
+            } else if (dueDate_ == sys_days{2000_y/1/1}) {
                 return dueDate_ > a.dueDate_;
+            } 
+            else {
+                return dueDate_ < a.dueDate_;
             }
         }
 };

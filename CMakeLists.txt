@@ -20,6 +20,8 @@ add_executable(unitTests
     tests/viewTests/viewProjectTests.cpp
     tests/viewTests/viewTableTests.cpp
     tests/viewTests/viewUtilitiesTests.cpp
+    tests/controllerTests/cmdViewProjectTests.cpp
+    tests/controllerTests/cliParserTests.cpp
     src/model/task.cpp
     src/model/task.h
     src/model/log.cpp
@@ -38,7 +40,12 @@ add_executable(unitTests
     src/view/viewTable.cpp
     src/view/viewTable.h
     src/view/viewUtilities.cpp
-    src/view/viewUtilities.h)
+    src/view/viewUtilities.h
+    src/controller/command.h
+    src/controller/cmdViewProject.cpp
+    src/controller/cmdViewProject.h
+    src/controller/cliParser.cpp
+    src/controller/cliParser.h)
 
 target_compile_options(unitTests PUBLIC -fno-exceptions -W -Wall -Wextra -Wpedantic -Wsign-conversion)
 

@@ -70,7 +70,14 @@ std::vector<std::string> Task :: stringVector() const {
             break;
     }
 
-    taskStringVector.push_back(format("%F %T", dueDate_));
+    if (dueDate_ == sys_days{2000_y/1/1}) {
+        taskStringVector.push_back("");
+    } else {
+        taskStringVector.push_back(format("%F %T", dueDate_));
+        if (taskStringVector[2].length() > 10) {
+            taskStringVector[2] = taskStringVector[2].substr(0,10);
+        }
+    }
     
     if (completed_) {
         taskStringVector.push_back("true");

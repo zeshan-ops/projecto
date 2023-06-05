@@ -9,6 +9,7 @@ BLANK SPACE FOR DOCUMENTATION LATER
 
 #include <string>
 #include <chrono>
+#include <vector>
 #include "date.h"
 
 using namespace date;
@@ -27,6 +28,8 @@ class Log {
 
         std::string getText() const;
         time_point<system_clock, seconds> getTimePoint() const;
+
+        std::vector<std::string> stringVector() const;
 
         bool operator==(const Log& a) const {
             return a.logText_ == logText_
