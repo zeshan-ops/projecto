@@ -18,13 +18,14 @@ Projecto is a command line interface tool for managing coding projects; like a v
 This application is written in C++ and makes use of the following libraries:
 - [Nlohmann JSON](https://github.com/nlohmann/json) - for data storage
 - [Doctest](https://github.com/doctest/doctest) - for unit testing
+- [Howard Hinnant Date](https://github.com/HowardHinnant/date) - for date-type capabilities. (This is now integrated with C++20, but Apple Clang does not have full support for all of its features yet, so this library is included for greater compatability with compilers).
 
 ## Installation
+T.B.A
 
 ## Documentation
 **Usage**:
 - [Command list](docs/usage/projectoCommandList.md)
-- [Examples](docs/usage/examples.md)
 
 **Design**:
 - [Software Design Document](docs/design/softwareDesignDocument.md)
