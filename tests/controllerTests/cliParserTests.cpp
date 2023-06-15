@@ -1,7 +1,7 @@
 #include "../doctest.h"
 #include "../../src/controller/cliParser.h"
 
-TEST_SUITE("CLI Parser Tests") {
+TEST_SUITE("Controller: cliParser Class Tests") {
     TEST_CASE("Command_exists() tests") {
         std::vector<std::string> validCommandList {
             "viewProject", "viewDashboard",
@@ -21,7 +21,7 @@ TEST_SUITE("CLI Parser Tests") {
             cmdArgs[0] = cmd;
 
             cliParser cmdChooser(cmdArgs);
-            CHECK(cmdChooser.command_exists());
+            CHECK(cmdChooser.commandExists());
         }
 
         std::vector<std::string> invalidCommandList {
@@ -42,7 +42,14 @@ TEST_SUITE("CLI Parser Tests") {
             cmdArgs[0] = cmd;
 
             cliParser cmdChooser(cmdArgs);
-            CHECK(!cmdChooser.command_exists());
+            CHECK(!cmdChooser.commandExists());
         }
+    }
+
+    TEST_CASE("Default command check") {
+        std::vector<std::string> emptyArgs;
+
+        cliParser cmdChooser(emptyArgs);
+        CHECK(cmdChooser.commandExists());
     }
 }

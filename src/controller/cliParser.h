@@ -11,14 +11,16 @@ BLANK SPACE FOR DOCUMENTATION LATER
 #include <string>
 #include <vector>
 #include <tuple>
+#include "command.h"
 
 class cliParser {
     private:
-        std::vector<std::string> args;
+        std::vector<std::string> args_;
     public:
         cliParser(std::vector<std::string> args);
 
-        bool command_exists();
+        bool commandExists();
+        // command& getCmdObject();
 };
 
 #endif
