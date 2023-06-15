@@ -20,13 +20,32 @@ TEST_SUITE("Task Class Tests") {
     }
 
     TEST_CASE("String converter") {
-        Task testTask("Test Task", 2, sys_days{2020_y/1/1});
+        Task testTask("Test Task", 0, sys_days{2020_y/1/1});
         std::vector<std::string> stringVectorTask = testTask.stringVector();
         CHECK(stringVectorTask.size() == 4);
         CHECK(stringVectorTask[0] == "Test Task");
-        CHECK(stringVectorTask[1] == "M");
         CHECK(stringVectorTask[2] == format("%F", floor<days>(sys_days{2020_y/1/1})));
         CHECK(stringVectorTask[3] == "false");
+        CHECK(stringVectorTask[1] == "");
+        
+        testTask.setUrgency(1);
+        stringVectorTask = testTask.stringVector();
+        CHECK(stringVectorTask[1] == "L");
+
+        testTask.setUrgency(2);
+        stringVectorTask = testTask.stringVector();
+        CHECK(stringVectorTask[1] == "M");
+
+        testTask.setUrgency(3);
+        stringVectorTask = testTask.stringVector();
+        CHECK(stringVectorTask[1] == "H");
+
+        Task testTask2("Minimal test task");
+        testTask2.setCompleted(true);
+        stringVectorTask = testTask2.stringVector();
+        CHECK(stringVectorTask[1] == "");
+        CHECK(stringVectorTask[2] == "");
+        CHECK(stringVectorTask[3] == "true");
     }
 
     TEST_CASE("Equality operator tests") {

@@ -10,6 +10,14 @@ TEST_SUITE("Log Class Tests") {
         CHECK(testLog.getText() == "Test Log");
     }
 
+    TEST_CASE("Returning correct string vector") {
+        Log testLog("Test Log");
+        testLog.setTime(sys_days{2020_y/5/5} + 6h + 9min + 5s);
+
+        std::vector<std::string> expectedVector = {"2020-05-05 06:09:05", "Test Log"};
+        CHECK(testLog.stringVector() == expectedVector);
+    }
+
     TEST_CASE("Equality operator Tests") {
         Log log1("Test Log 1");
         Log log2("Test Log 2");

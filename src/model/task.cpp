@@ -73,10 +73,7 @@ std::vector<std::string> Task :: stringVector() const {
     if (dueDate_ == sys_days{2000_y/1/1}) {
         taskStringVector.push_back("");
     } else {
-        taskStringVector.push_back(format("%F %T", dueDate_));
-        if (taskStringVector[2].length() > 10) {
-            taskStringVector[2] = taskStringVector[2].substr(0,10);
-        }
+        taskStringVector.push_back(format("%F", dueDate_));
     }
     
     if (completed_) {
