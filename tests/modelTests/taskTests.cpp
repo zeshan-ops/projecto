@@ -162,5 +162,11 @@ TEST_SUITE("Task Class Tests") {
             taskB.setDueDate(taskA.getDueTimePoint());
             CHECK(taskA < taskB);
         }
+
+        SUBCASE("Due date not set on one task") {
+            Task taskC("Test Task C");
+            CHECK(taskC < taskA);
+            CHECK(taskC < taskB);
+        }
     }
 }
