@@ -8,7 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 initialiser :: initialiser() {
     if (dataDirectoryExists()) {
-        if (initialFileExists()) {
+        if (initialFileExists() && initialFileCorrectFormat()) {
             std::string initialFilePath = (std::string)std::getenv("HOME") + "/.projecto/initial.txt";
             std::ifstream initialFile(initialFilePath);
 
@@ -26,13 +26,16 @@ initialiser :: initialiser() {
 
             focusedProjectName_ = line;
         } else {
+            if (initialFileExists()) {
+                std::filesystem::remove((std::string)std::getenv("HOME") + "/.project/initial.txt");
+            }
             createInitialFile();
-            focusedProjectName_ = " ";
+            focusedProjectName_ = "FOCUSED PROJECT NOT SET";
         }
     } else {
         createDataDirectory();
         createInitialFile();
-        focusedProjectName_ = " ";
+        focusedProjectName_ = "FOCUSED PROJECT NOT SET";
     }
 }
 
@@ -47,6 +50,29 @@ bool initialiser :: initialFileExists() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+bool initialiser :: initialFileCorrectFormat() {
+    std::string initialFilePath = (std::string)std::getenv("HOME") + "/.projecto/initial.txt";
+    std::ifstream initialFile(initialFilePath);
+
+    std::string line;
+    bool correctFormat {false};
+    bool headerLine {false};
+
+    while (std::getline(initialFile, line)) {
+        if (line == "FOCUSED_PROJECT") {
+            headerLine = true;
+            continue;
+        }
+        if (headerLine == true) {
+            correctFormat = true;
+            break;
+        }
+    }
+
+    return correctFormat;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void initialiser :: createDataDirectory() {
     std::string dataDirectoryPath = (std::string)std::getenv("HOME") + "/.projecto";
     std::filesystem::create_directory(dataDirectoryPath);
@@ -56,7 +82,7 @@ void initialiser :: createDataDirectory() {
 void initialiser :: createInitialFile() {
     std::string initialFilePath = (std::string)std::getenv("HOME") + "/.projecto/initial.txt";
 
-    std::string initialFileHardCode = {"FOCUSED_PROJECT\n "};
+    std::string initialFileHardCode = {"FOCUSED_PROJECT\nFOCUSED PROJECT NOT SET"};
     std::ofstream outputFile(initialFilePath);
 
     outputFile << initialFileHardCode;
@@ -65,7 +91,7 @@ void initialiser :: createInitialFile() {
 
 ///////////////////////////////////////////////////////////////////////////////
 bool initialiser :: focusedProjectSet() {
-    if (focusedProjectName_ == " ") {
+    if (focusedProjectName_ == "FOCUSED PROJECT NOT SET") {
         return false;
     } else {
         return true;

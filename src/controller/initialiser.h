@@ -18,6 +18,7 @@ class initialiser {
 
         bool dataDirectoryExists();
         bool initialFileExists();
+        bool initialFileCorrectFormat();
 
         void createDataDirectory();
         void createInitialFile();
