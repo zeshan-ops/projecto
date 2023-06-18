@@ -1,23 +1,26 @@
 /*
 
-BLANK SPACE FOR DOCUMENTATION LATER
+Construct with reference to Project,
+will convert the Project to a view (string) on execute.
 
 */
 
 #ifndef CMD_VIEWPROJECT_H
 #define CMD_VIEWPROJECT_H
 
-#include "../view/viewProject.h"
-#include "../model/jsonDataInterface.h"
-#include "../model/project.h"
 #include "command.h"
+
 #include <string>
+#include <iostream>
+#include <vector>
 
 class cmdViewProject : public command {
     private:
-        Project& project_;
+        std::vector<std::string> args_;
     public:
-        cmdViewProject(Project& project);
+        cmdViewProject(std::vector<std::string> args);
+
+        bool verifyArgs();
         std::string execute();
 };
 

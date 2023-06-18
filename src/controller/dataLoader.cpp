@@ -25,19 +25,25 @@ void dataLoader :: createDataFile() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-Project dataLoader :: getProject() {
-    std::string dataFilePath = (std::string)std::getenv("HOME") + "/.projecto/data.json";
-    std::ifstream dataFile(dataFilePath);
-    jsonDataInterface loadedData(dataFile);
-    dataFile.close();
-    return loadedData.getProject(projectName_);
-}
-
-///////////////////////////////////////////////////////////////////////////////
 jsonDataInterface dataLoader :: getInterface() {
     std::string dataFilePath = (std::string)std::getenv("HOME") + "/.projecto/data.json";
     std::ifstream dataFile(dataFilePath);
     jsonDataInterface loadedData(dataFile);
     dataFile.close();
     return loadedData;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+bool dataLoader :: projectExists() {
+    jsonDataInterface projectChecker = getInterface();
+    return projectChecker.projectExists(projectName_);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+Project dataLoader :: getProject() {
+    std::string dataFilePath = (std::string)std::getenv("HOME") + "/.projecto/data.json";
+    std::ifstream dataFile(dataFilePath);
+    jsonDataInterface loadedData(dataFile);
+    dataFile.close();
+    return loadedData.getProject(projectName_);
 }

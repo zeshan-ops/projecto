@@ -23,6 +23,7 @@ add_executable(unitTests
     tests/controllerTests/cliParserTests.cpp
     tests/controllerTests/initialiserTests.cpp
     tests/controllerTests/dataLoaderTests.cpp
+    tests/controllerTests/cmdViewProjectTests.cpp
     src/model/task.cpp
     src/model/task.h
     src/model/log.cpp
@@ -48,7 +49,9 @@ add_executable(unitTests
     src/controller/initialiser.cpp
     src/controller/initialiser.h
     src/controller/dataLoader.cpp
-    src/controller/dataLoader.h)
+    src/controller/dataLoader.h
+    src/controller/cmdViewProject.cpp
+    src/controller/cmdViewProject.h)
 
 target_compile_options(unitTests PUBLIC -fno-exceptions -W -Wall -Wextra -Wpedantic -Wsign-conversion)
 

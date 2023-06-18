@@ -18,9 +18,11 @@ class dataLoader {
 
         bool dataFileExists();
         void createDataFile();
-
-        Project getProject();
+        
         jsonDataInterface getInterface();
+
+        bool projectExists();
+        Project getProject();
 };
 
 #endif
