@@ -1,4 +1,4 @@
-name: MacOS Tests
+name: MacOS Code Coverage
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  BUILD_TYPE: Test
+  BUILD_TYPE: Coverage
 
 jobs:
   build:

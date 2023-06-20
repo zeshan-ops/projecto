@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-if("${CMAKE_BUILD_TYPE}" STREQUAL "Test")
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Coverage")
     add_subdirectory(tests)
     include(CodeCoverage.cmake)
     append_coverage_compiler_flags()
@@ -22,8 +22,13 @@ if("${CMAKE_BUILD_TYPE}" STREQUAL "Test")
             "${PROJECT_SOURCE_DIR}/tests/*")
 endif()
 
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Tests")
+    add_subdirectory(tests)
+endif()
+
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     add_subdirectory(src)
+    add_subdirectory(tests)
 endif()
 
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
