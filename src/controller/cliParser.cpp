@@ -33,7 +33,11 @@ bool cliParser :: commandExists() {
 ///////////////////////////////////////////////////////////////////////////////
 std::unique_ptr<command> cliParser :: getCmdObject() {
     if (args_[0] == "viewProject") {
-        args_.erase(args_.begin());
-        return(std::make_unique<cmdViewProject>(args_));
+        args_.clear();
+        return (std::make_unique<cmdViewProject>(args_));
+    }
+    else {
+        args_.clear();
+        return (std::make_unique<cmdViewProject>(args_));
     }
 }

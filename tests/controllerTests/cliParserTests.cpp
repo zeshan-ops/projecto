@@ -1,5 +1,7 @@
 #include "../doctest.h"
 #include "../../src/controller/cliParser.h"
+#include "../../src/controller/cmdViewProject.h"
+#include <filesystem>
 
 TEST_SUITE("Controller: cliParser Class Tests") {
     TEST_CASE("Command_exists() tests") {
