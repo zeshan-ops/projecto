@@ -1,4 +1,4 @@
-name: CMake
+name: MacOS Tests
 
 on:
   push:
@@ -7,16 +7,12 @@ on:
     branches: [ "main" ]
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Debug
+  BUILD_TYPE: Test
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: macos-latest
-
+    
     steps:
     - uses: actions/checkout@v3
     
@@ -24,20 +20,13 @@ jobs:
       run: brew install gcovr
 
     - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Test
 
     - name: Build the project
       run: cmake --build ${{github.workspace}}/build
-    
-    - name: Check contents of build directory
-      run: ls ${{github.workspace}}/build
       
     - name: Generate code coverage reports
       run: cd build && make projecto_coverage
       
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
-      
-
