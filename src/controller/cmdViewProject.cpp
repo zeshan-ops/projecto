@@ -14,10 +14,15 @@ cmdViewProject :: cmdViewProject(std::vector<std::string> args) : args_(args) {}
 
 ///////////////////////////////////////////////////////////////////////////////
 bool cmdViewProject :: verifyArgs() {
-    if (args_.size() == 0) {
+    if (args_.empty()) {
         return true;
     }
     return false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+std::string cmdViewProject :: argErrorMessage() {
+    return "User input error: viewProject command takes no arguments.";
 }
 
 ///////////////////////////////////////////////////////////////////////////////

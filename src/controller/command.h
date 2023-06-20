@@ -11,7 +11,9 @@ BLANK SPACE FOR DOCUMENTATION LATER
 
 class command {
     public:
+        virtual ~command() {};
         virtual bool verifyArgs() = 0;
+        virtual std::string argErrorMessage() = 0;
         virtual std::string execute() = 0;
 };
 

@@ -1,0 +1,45 @@
+add_executable(unitTests
+    mainTests.cpp
+    modelTests/logTests.cpp
+    modelTests/taskTests.cpp
+    modelTests/projectTests.cpp
+    modelTests/jsonDataInterfaceTests.cpp
+    modelTests/modelUtilTests.cpp
+    viewTests/viewDetailTests.cpp
+    viewTests/viewProjectTests.cpp
+    viewTests/viewTableTests.cpp
+    viewTests/viewUtilitiesTests.cpp
+    controllerTests/cliParserTests.cpp
+    controllerTests/initialiserTests.cpp
+    controllerTests/dataLoaderTests.cpp
+    controllerTests/cmdViewProjectTests.cpp
+    ../src/model/task.cpp
+    ../src/model/task.h
+    ../src/model/log.cpp
+    ../src/model/log.h
+    ../src/model/project.cpp
+    ../src/model/project.h
+    ../src/model/jsonDataInterface.cpp
+    ../src/model/jsonDataInterface.h
+    ../src/model/modelUtilities.cpp
+    ../src/model/modelUtilities.h
+    ../src/view/viewDetail.cpp
+    ../src/view/viewDetail.h
+    ../src/view/ansiMacros.h
+    ../src/view/viewProject.cpp
+    ../src/view/viewProject.h
+    ../src/view/viewTable.cpp
+    ../src/view/viewTable.h
+    ../src/view/viewUtilities.cpp
+    ../src/view/viewUtilities.h
+    ../src/controller/command.h
+    ../src/controller/cliParser.cpp
+    ../src/controller/cliParser.h
+    ../src/controller/initialiser.cpp
+    ../src/controller/initialiser.h
+    ../src/controller/dataLoader.cpp
+    ../src/controller/dataLoader.h
+    ../src/controller/cmdViewProject.cpp
+    ../src/controller/cmdViewProject.h)
+
+target_compile_options(unitTests PUBLIC -fno-exceptions -W -Wall -Wextra -Wpedantic -Wsign-conversion)

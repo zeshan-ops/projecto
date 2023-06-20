@@ -20,18 +20,17 @@ int main(int argc, char* argv[]){
     cliParser argParser(arguments);
 
     if (argParser.commandExists()) {
-        command& cmd = argParser.getCmdObject();
-        if (cmd.verifyArgs()) {
-            std::cout << cmd.execute();
+        if (argParser.getCmdObject()->verifyArgs()) {
+            std::cout << argParser.getCmdObject()->execute();
             return 0;
         } 
         else {
-            std::cout << cmd.errorMessage();
+            std::cout << argParser.getCmdObject()->argErrorMessage();
             return 0;
         }
     } 
     else {
-        // print error message
+        std::cout << "Unrecognised command.\n";
         return 0;
     }
 }

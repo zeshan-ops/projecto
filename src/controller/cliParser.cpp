@@ -1,4 +1,5 @@
 #include "cliParser.h"
+#include "cmdViewProject.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 cliParser :: cliParser(std::vector<std::string> args) {
@@ -30,15 +31,9 @@ bool cliParser :: commandExists() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/*
-command& cliParser :: getCmdObject() {
+std::unique_ptr<command> cliParser :: getCmdObject() {
     if (args_[0] == "viewProject") {
-        cmdViewProject cmd;
-        return cmd;
-    }
-    else {
-        cmdViewProject cmd;
-        return cmd;
+        args_.erase(args_.begin());
+        return(std::make_unique<cmdViewProject>(args_));
     }
 }
-*/

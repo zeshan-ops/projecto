@@ -1,0 +1,33 @@
+add_executable(projecto
+    model/date.h
+    model/json.hpp
+    model/jsonDataInterface.cpp
+    model/jsonDataInterface.h
+    model/log.cpp
+    model/log.h
+    model/modelUtilities.cpp
+    model/modelUtilities.h
+    model/project.cpp
+    model/project.h
+    model/task.cpp
+    model/task.h
+    view/viewDetail.cpp
+    view/viewDetail.h
+    view/viewProject.cpp
+    view/viewProject.h
+    view/viewTable.cpp
+    view/viewTable.h
+    view/viewUtilities.cpp
+    view/viewUtilities.h
+    controller/cliParser.cpp
+    controller/cliParser.h
+    controller/cmdViewProject.cpp
+    controller/cmdViewProject.h
+    controller/command.h
+    controller/dataLoader.cpp
+    controller/dataLoader.h
+    controller/initialiser.cpp
+    controller/initialiser.h
+    main.cpp)
+
+target_compile_options(projecto PUBLIC -W -Wall -Wextra -Wpedantic -Wsign-conversion)

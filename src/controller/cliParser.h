@@ -20,7 +20,7 @@ class cliParser {
         cliParser(std::vector<std::string> args);
 
         bool commandExists();
-        // command& getCmdObject();
+        std::unique_ptr<command> getCmdObject();
 };
 
 #endif

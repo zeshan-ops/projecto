@@ -21,6 +21,7 @@ class cmdViewProject : public command {
         cmdViewProject(std::vector<std::string> args);
 
         bool verifyArgs();
+        std::string argErrorMessage();
         std::string execute();
 };
 
