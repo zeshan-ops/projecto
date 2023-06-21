@@ -1,42 +1,42 @@
-#include <sstream>
-#include <string>
-#include <iostream>
-#include <fstream>
-
 #include "../doctest.h"
-#include "../../src/controller/cmdViewProject.h"
-#include "../../src/view/ansiMacros.h"
-#include "../../src/model/project.h"
+#include "../../src/controller/cmdSetFocus.h"
 #include "../../src/model/json.hpp"
+#include <filesystem>
+#include <fstream>
+#include <iostream>
 
 using nlohmann::json;
 
-TEST_SUITE("Controller: cmdViewProject Class Tests") {
-    TEST_CASE("Running a fully fleshed project, with valid CLI input") {
-        std::stringstream composer;
-            
-        composer << "\n";
-        composer << txtBold << txtGreen << "                                 Test Project 1";
-        composer << "\n\n";
-        composer << "TASKS" << txtReset << "\n";
-        composer 
-            << "\033[4m\033[1mID\033[0m \033[4m\033[1mText                                                           \033[0m \033[4m\033[1mP\033[0m \033[4m\033[1mDue Date  \033[0m\n" 
-            << "0  Blurg farg jork lorem                                           H 2023-02-02\n"
-            << "1  Blurg farg jork lorem                                           H 2023-02-03\n"
-            << "2  Blurg farg jork lorem ipsum dolores, truncation galore my...    M 2023-02-03\n"
-            << "3  Blurg farg jork lorem                                           L 2023-02-03\n";
-        composer << txtDim << "(4 tasks)" << txtReset << "\n";
-        composer << "\n";
+TEST_SUITE("Controller: cmdSetFocus Class Tests") {
+    TEST_CASE("verifyArgs() tests") {
+        SUBCASE("One argument supplied") {
+            cmdSetFocus cmdTester({"One"});
+            CHECK(!cmdTester.verifyArgs());
+        }
 
-        composer << txtGreen << txtBold << "LAST ACTION" << txtReset;
-        composer << "\n";
-        composer << txtBold << txtDim << "2023-06-01 10:42:54" << txtReset;
-        composer << "\n";
-        composer << "Lorem ipsum dolores, equitat vai sorquet epilin aquila et vac, loresium dolorium\nthe quick brown fox jumper over the lazy dog. Monkeys bashing keyboards would\neventually write the entire works of Shakespeare. Seek the truth, return to the\npath. Etc bon soir mon cherie.";    
-        composer << "\n";
+        SUBCASE("Two arguments supplied") {
+            cmdSetFocus cmdTester({"One", "Two"});
+            CHECK(cmdTester.verifyArgs());
+        }
 
-        std::string expectedString = composer.str();
+        SUBCASE("Three arguments supplied") {
+            cmdSetFocus cmdTester({"One", "Two", "Three"});
+            CHECK(!cmdTester.verifyArgs());
+        }
+    }
 
+    TEST_CASE("execute() with empty data file") {
+        cmdSetFocus cmdTester({"setFocus", "Test Project 1"});
+        std::string expectedOutput = "\nError: \"Test Project 1\" could not be found in data file. \n To see a list of stored projects use: \nprojecto projects\n";
+        CHECK(cmdTester.execute() == expectedOutput);
+
+        std::string dataPath = (std::string)std::getenv("HOME") + "/.projecto";
+        std::filesystem::remove_all(dataPath);
+        CHECK(!std::filesystem::exists(dataPath));
+    }
+
+    TEST_CASE("execute() with full data file") {
+        // creating mock data files
         json testFile1Data = json::parse(R"([
         {
             "projectName": "Test Project 1",
@@ -141,40 +141,17 @@ TEST_SUITE("Controller: cmdViewProject Class Tests") {
         outputInitFile << initFileText;
         outputInitFile.close();
 
-        // testing the cmdViewProject object
-        cmdViewProject cmd({"viewProject"});
+        SUBCASE("Valid project name") {
+            cmdSetFocus cmdTester({"setFocus", "Test Project 2"});
+            std::string expectedOutput = "\nFocused project has been set to \"Test Project 2.\"\n";
+            CHECK(cmdTester.execute() == expectedOutput);
+        }
 
-        CHECK(cmd.verifyArgs() == true);
-        CHECK(cmd.execute() == expectedString);
-
-        std::filesystem::remove_all(dataPath);
-        CHECK(!std::filesystem::exists(dataPath));
-    }
-
-    TEST_CASE("Behaviour when no focused project is set") {
-        std::string dataPath = (std::string)std::getenv("HOME") + "/.projecto";
-
-        cmdViewProject cmd({"viewProject"});
-
-        CHECK(cmd.verifyArgs() == true);
-        CHECK(cmd.execute() == "No focused project set. To set a focused project, use:\nprojecto setFocus <PROJECT NAME>\n");
-
-        std::filesystem::remove_all(dataPath);
-        CHECK(!std::filesystem::exists(dataPath));
-    }
-
-    TEST_CASE("Behaviour when focused project is set but cannot be found") {
-        std::string dataPath = (std::string)std::getenv("HOME") + "/.projecto";
-        std::filesystem::create_directory(dataPath);
-
-        std::string initFileText = "FOCUSED_PROJECT\nRandom project name that doesn't exist";
-        std::ofstream outputInitFile(dataPath + "/initial.txt");
-        outputInitFile << initFileText;
-        outputInitFile.close();
-
-        cmdViewProject cmd({"viewProject"});
-
-        CHECK(cmd.execute() == "Focused project not found. To set a focused project, use:\nprojecto setFocus <PROJECT NAME>\n");
+        SUBCASE("Invalid project name") {
+            cmdSetFocus cmdTester({"setFocus", "Invalid project name"});
+            std::string expectedOutput = "\nError: \"Invalid project name\" could not be found in data file. \n To see a list of stored projects use: \nprojecto projects\n";
+            CHECK(cmdTester.execute() == expectedOutput);
+        }
 
         std::filesystem::remove_all(dataPath);
         CHECK(!std::filesystem::exists(dataPath));

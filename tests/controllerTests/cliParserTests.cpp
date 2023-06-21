@@ -12,7 +12,7 @@ TEST_SUITE("Controller: cliParser Class Tests") {
             "editProjectName", "deleteProject", "addNewProject",
             "addTask", "editTask", "deleteTask",
             "addLog", "deleteLog",
-            "setProject"
+            "setFocus"
         };
 
         for(auto& cmd : validCommandList) {

@@ -14,7 +14,7 @@ cmdViewProject :: cmdViewProject(std::vector<std::string> args) : args_(args) {}
 
 ///////////////////////////////////////////////////////////////////////////////
 bool cmdViewProject :: verifyArgs() {
-    if (args_.size() == 0) {
+    if (args_.size() == 1) {
         return true;
     }
     return false;

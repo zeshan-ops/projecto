@@ -1,5 +1,6 @@
 #include "cliParser.h"
 #include "cmdViewProject.h"
+#include "cmdSetFocus.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 cliParser :: cliParser(std::vector<std::string> args) {
@@ -20,7 +21,7 @@ bool cliParser :: commandExists() {
         "editProjectName", "deleteProject", "addNewProject",
         "addTask", "editTask", "deleteTask",
         "addLog", "deleteLog",
-        "setProject"
+        "setFocus"
     };
 
     if(std::find(commandList.begin(),commandList.end(), args_[0]) != commandList.end()) {
@@ -33,9 +34,13 @@ bool cliParser :: commandExists() {
 ///////////////////////////////////////////////////////////////////////////////
 std::unique_ptr<command> cliParser :: getCmdObject() {
     if (args_[0] == "viewProject") {
-        args_.clear();
         return (std::make_unique<cmdViewProject>(args_));
     }
+
+    else if (args_[0] == "setFocus") {
+        return (std::make_unique<cmdSetFocus>(args_));
+    }
+
     else {
         args_.clear();
         return (std::make_unique<cmdViewProject>(args_));

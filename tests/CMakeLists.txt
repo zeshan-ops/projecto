@@ -13,6 +13,7 @@ add_executable(unitTests
     controllerTests/initialiserTests.cpp
     controllerTests/dataLoaderTests.cpp
     controllerTests/cmdViewProjectTests.cpp
+    controllerTests/cmdSetFocusTests.cpp
     ../src/model/task.cpp
     ../src/model/task.h
     ../src/model/log.cpp
@@ -40,6 +41,8 @@ add_executable(unitTests
     ../src/controller/dataLoader.cpp
     ../src/controller/dataLoader.h
     ../src/controller/cmdViewProject.cpp
-    ../src/controller/cmdViewProject.h)
+    ../src/controller/cmdViewProject.h
+    ../src/controller/cmdSetFocus.cpp
+    ../src/controller/cmdSetFocus.h)
 
 target_compile_options(unitTests PUBLIC -fno-exceptions -W -Wall -Wextra -Wpedantic -Wsign-conversion)
